@@ -45,7 +45,7 @@
             {% endblock %}
         </div>
         {% if project.time_span %}
-        <div class="project-timespan sr-only">{{ project.time_span }}</div>
+        <div class="project-timespan sr-only">{{ project.time_span.0 }} – {{ project.time_span.1|default:"Present" }}</div>
         {% endif %}
     </div>
     {% block footer %}{% endblock %}

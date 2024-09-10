@@ -231,9 +231,9 @@ PROJECTS = {
         "template": None,
         "links": {
             "Open": "/",
-            "GitHub": "https://github.com/yodarocks1/bcdb",
+            "GitHub": "https://github.com/yodarocks1/bcdb-website",
         },
-        "time_span": "",
+        "time_span": ("August 2024", ""),
     },
     "pythontutor": {
         "name": "PythonTutor",
@@ -243,7 +243,7 @@ PROJECTS = {
             "GitHub": "https://github.com/yodarocks1/pythontutor",
             "Docker": "https://hub.docker.com/r/yodarocks1/pythontutor",
         },
-        "time_span": "October 2023 – December 2023",
+        "time_span": ("October 2023", "December 2023"),
     },
     "3d_scene_manager": {
         "name": "OpenGL 3D Scene Manager",
@@ -258,7 +258,7 @@ PROJECTS = {
             "GitHub": "https://github.com/formal-verification-research/VERAPAK",
             "Docker": "https://hub.docker.com/r/yodarocks1/verapak",
         },
-        "time_span": "February 2021 – May 2024",
+        "time_span": ("February 2021", ""),
     },
     "eran": {
         "name": "ERAN",
@@ -267,7 +267,7 @@ PROJECTS = {
             "GitHub": "https://github.com/yodarocks1/eran",
             "Docker": "https://hub.docker.com/r/yodarocks1/eran",
         },
-        "time_span": "",
+        "time_span": ("April 2024", ""),
         "deprecated": True,
     },
     "hustle": {
@@ -276,15 +276,15 @@ PROJECTS = {
         "links": {
             "GitHub": "https://github.com/yodarocks1/3MusketeersAndARifleman",
         },
-        "time_span": "",
+        "time_span": ("January 2022", "May 2022"),
     },
     "traffic_simulation": {
         "name": "Traffic Simulation",
         "template": DERIVE_TEMPLATE,
         "links": {
-            
+            "GitHub": "https://github.com/yodarocks1/traffic-simulator",
         },
-        "time_span": "",
+        "time_span": ("April 2024", "May 2024"),
     },
     "graph_analysis": {
         "name": "USU Graph Analysis",
@@ -292,7 +292,7 @@ PROJECTS = {
         "links": {
             
         },
-        "time_span": "January 2022 – May 2022",
+        "time_span": ("January 2022", "May 2022"),
     },
 }
 WORKFLOWS = [

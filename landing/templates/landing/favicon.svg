@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="256" height="256" viewBox="0 0 256 256">
+    <style>
+        polygon {
+            fill: black;
+            stroke: black;
+            stroke-width: 124;
+            stroke-linejoin: round;
+        }
+        text {
+            fill: white;
+            stroke: {{ primaryColor|default:'white' }};
+            stroke-opacity: 50%;
+            stroke-width: 6px;
+            stroke-linejoin: bevel;
+        }
+        tspan {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 110px;
+            font-weight: bold;
+        }
+    </style>
+    <g transform="matrix(1.28 0 0 1.28 127.54 127.54)">
+        <polygon vector-effect="non-scaling-stroke" points="-50,-50 -50,50 50,50 50,-50 "/>
+    </g>
+    <g transform="matrix(1.25 0 0 1.25 32 124)" style="">
+        <text>
+            <tspan y="0" x="0">BC</tspan>
+            <tspan y="5rem" x="0">DB</tspan>
+        </text>
+    </g>
+</svg>

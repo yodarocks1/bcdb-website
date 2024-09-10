@@ -1,0 +1,35 @@
+{% extends 'landing/base.html' %}
+
+{% block header %}
+    <style type="text/css">
+        
+    </style>
+    <script type="text/javascript">
+        window.onload = () => {
+            document.querySelector("#sideNav .navbar-toggler").remove();
+            document.querySelector("#sideNav #navbarResponsive").remove();
+            document.querySelector("#sideNav #profile-img").parentNode.remove();
+            document.querySelector("#sideNav").style = "position: fixed; top: 0; left: 0; right: 0; width: 100%; height: 5rem; flex-direction: row; display: flex";
+            document.querySelector("#sideNav").classList.remove("navbar-expand-lg");
+            document.querySelector("#sideNav .navbar-brand").style = "margin: 0; padding: 0.5rem";
+            document.querySelector("#sideNav div").style = "margin: 0; padding: 0.5rem";
+            document.querySelector("#brand").style = "display: block";
+            document.querySelector("#brand").classList = "";
+            document.querySelector("#sideNav div").classList = "";
+            document.body.style.paddingLeft = 0;
+            document.body.style.paddingTop = "5rem";
+            if (document.querySelector("#about") != null) {
+                document.querySelector("#about .subheading").classList.remove("mb-5");
+                document.querySelector("#about .lead").remove();
+                document.querySelector("#about .social-icons").remove();
+            }
+
+            let t = document.createElement("h2");
+            t.textContent = "{% block project_title %}TITLE{% endblock %}";
+            t.classList.add("text-light");
+            t.classList.add("m-0");
+            document.querySelector("#sideNav").insertBefore(t, document.querySelector("#sideNav .navbar-brand"));
+        }
+    </script>
+{% endblock %}
+

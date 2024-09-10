@@ -1,0 +1,10 @@
+{% extends "error/base.html" %}
+
+{% block error_code_meaning %}
+    The HTTP method you used is not valid.
+{% endblock %}
+
+{% block error_reason %}
+    <p>It seems you have somehow submitted an invalid form or bad link.</p>
+    <p style="filter: opacity(0.5)">Invalid method "{{ method }}" for url <a href="{{ request.get_full_path }}">{{ request.get_full_path }}</a></p>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'landing/base.html' %}
+
+{% block description %} Bennett DenBleyker's web-résumé {% endblock %}
+{% block title %} Résumé {% endblock %}
+{% block resuLink %} active {% endblock %}
+{% block wip %}{% endblock %}
+
+{% block header %}
+    <style type="text/css">
+        #about {
+            min-height: 85vh;
+            transition: min-height 0.5s ease-out;
+        }
+        .print-1em svg {
+            height: 1rem;
+        }
+    </style>
+    <script type="text/javascript">
+        document.addEventListener('scroll', function (e) {
+            if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                if (document.scrollingElement.scrollTop == 0) {
+                    document.getElementById("about").style.minHeight = null;
+                } else {
+                    document.getElementById("about").style.minHeight = "50vh";
+                }
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block sectionLinks %}
+    {{ block.super }}
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#more">Read More</a></li>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_superuser %}
+    <a href="{% url 'landing:resume_short' %}"><i class="fas fa-print btn btn-primary text-light px-2" style="position: fixed; bottom: 0; right: 0; font-size: 18pt; opacity: 0.6"></i></a>
+    {% endif %}
+    {{ block.super }}
+    {% include 'sections/education.html' with educations=educations only %}
+    <hr class="m-0" />
+    {% include 'sections/experience.html' with jobs=jobs %}
+    <hr class="m-0" />
+    {% include 'sections/skills.html' with languages=languages tools=tools workflows=workflows only %}
+    {% comment %}
+    <hr class="m-0" />
+    {% include 'sections/interests.html' only %}
+    <hr class="m-0" />
+    {% include 'sections/awards.html' with awards=awards only %}
+    <hr class="m-0" />
+    {% include 'sections/more.html' only %}
+    {% endcomment %}
+{% endblock %}
+

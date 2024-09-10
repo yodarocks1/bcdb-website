@@ -1,0 +1,50 @@
+{% extends "error/base.html" %}
+
+{% block error_code_meaning %}
+    Forbidden: You cannot login to an inactive account
+{% endblock %}
+
+{% block error_reason %}
+    <p>Your email hasn't been verified yet, so some things (like this page) won't work quite yet.</p>
+    <p style="filter: opacity(0.5)">Login failed: Account inactive</p>
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="email" class="form-label animate">Email</label>
+            <input type="email" name="email" id="email" class="form-control" value="{{ email }}"></input>
+        </div>
+        <div>
+            <label for="username" class="form-label animate">Username</label>
+            <input type="text" name="username" id="username" class="form-control" value="{{ username }}"></input>
+        </div>
+        <div class="mt-4">
+            {% if status == "error" %}
+            <button type="submit" class="btn btn-danger">Resend Email</button>
+            <span>No user matches that combination</span>
+            {% elif status == "success" %}
+            <button type="submit" class="btn btn-success">Resend Email</button>
+            <span>Email was sent</span>
+            {% else %}
+            <button type="submit" class="btn btn-primary">Resend Email</button>
+            {% endif %}
+        </div>
+    </form>
+{% endblock %}
+
+{% block footer %}
+    <script type="text/javascript">
+        function animateLabel(input) {
+            let label = document.querySelector("[for=" + input.id + "]");
+            input.onchange = () => {
+                if (input.value.length === 0) {
+                    label.classList.add("animate");
+                } else {
+                    label.classList.remove("animate");
+                }
+            }
+            input.onchange();
+        }
+        animateLabel(document.getElementById("email"));
+        animateLabel(document.getElementById("username"));
+    </script>
+{% endblock %}

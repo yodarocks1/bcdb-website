@@ -1,0 +1,52 @@
+<!-- PROJECT: {{ project.name }} -->
+<section class="resume-section project" id="proj_{{ project.id }}">
+    <div class="resume-section-content">
+        <h2 class="mb-2">{{ project.name }}
+        {% if project.languages or project.tools %}
+        <ul class="list-inline dev-icons print-listify d-inline-block">
+            {% for language in project.languages %}
+                {% include 'landing/langtool.html' with skill=language no_project=True only %}
+            {% endfor %}
+            {% for tool in project.tools %}
+                {% include 'landing/langtool.html' with skill=tool no_project=True only %}
+            {% endfor %}
+        </ul>
+        {% endif %}</h2>
+        {% block content %}{% endblock %}
+        <div class="project-buttons">
+            {% block buttons %}
+            {% comment %}
+            {% with hasGitHub=project.links.Github|yesno:"1,0"
+                    hasDocker=project.links.Docker|yesno:"1,0"
+                    hasOpen=project.links.Open|yesno:"1,0" %}
+            {% with count=hasGithub|add:hasDocker|add:hasOpen %}
+            {% if count == 1 %}
+                {% if project.links.Open %}
+                <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 95%" href="{{ project.links.Open }}">Open</a>
+                {% elif project.links.Docker %}
+                <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 95%" href="{{ project.links.Docker }}"><i class="fab fa-docker" width="32"></i> Docker</a>
+                {% elif project.links.GitHub %}
+                <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 95%" href="{{ project.links.GitHub }}"><i class="fab fa-github" width="32"></i> GitHub</a>
+            {% elif count == 2 %}
+                {% if project.links.Open %}
+                <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 47.5%" href="{{ project.links.Open }}">Open</a>
+                {% if project.links.Docker %}
+                <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 47.5%" href="{{ project.links.Docker }}"><i class="fab fa-docker" width="32"></i> Docker</a>
+                {% if project.links.GitHub %}
+                <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 47.5%" href="{{ project.links.GitHub }}"><i class="fab fa-github" width="32"></i> GitHub</a>
+            {% elif count == 3 %}
+                <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 47.5%" href="{{ project.links.Open }}">Open</a>
+                <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 23.75%" href="{{ project.links.Docker }}"><i class="fab fa-docker" width="32"></i> Docker</a>
+                <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 23.75%" href="{{ project.links.GitHub }}"><i class="fab fa-github" width="32"></i> GitHub</a>
+            {% endif %}
+            {% endwith %}
+            {% endwith %}
+            {% endcomment %}
+            {% endblock %}
+        </div>
+        {% if project.time_span %}
+        <div class="project-timespan sr-only">{{ project.time_span }}</div>
+        {% endif %}
+    </div>
+    {% block footer %}{% endblock %}
+</section>

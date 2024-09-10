@@ -1,0 +1,47 @@
+{% extends 'landing/project_base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="succinct-off">
+        <p>Developed a web-based educational platform using Django and RestrictedPython to assist instructors in teaching Python programming through a guided, constraint-based approach. The platform allows students to code within a sandboxed environment, offering features such as code saving, hint requests, and constraint-based testing. The system provides immediate feedback, helping students with basic proficiency to progress towards correct solutions. It is designed to clarify instructor expectations and enhance learning outcomes through interactive guidance and error feedback. Future enhancements include auto-grading, improved usability, and integration with AI-driven support tools.</p>
+        <ul>
+            <li>
+                Developed a Django-based platform to assist instructors in teaching Python by providing a unified interface for problem creation, testing, and feedback, enhancing both instructor and student experiences.
+            </li>
+            <li>
+                Implemented a sandboxed environment using RestrictedPython to securely run and test student code, offering real-time hints, error underlining, and feedback to guide learners towards correct solutions.
+            </li>
+            <li>
+                Enhanced user experience by integrating features like multi-tab support, local code saving, and detailed feedback mechanisms, improving the clarity and usability of coding tasks for students.
+            </li>
+            <li>
+                Conducted preliminary testing with a FizzBuzz implementation, demonstrating the tool’s effectiveness in guiding users with basic Python proficiency towards correct solutions, while identifying areas for further development.
+            </li>
+        </ul>
+    </div>
+    <ul class="succinct-on">
+        <li>
+            Created a sandboxed Python environment with real-time feedback and interactive guidance.
+        </li>
+        <li>
+            Designed an IDE-like user interface with features such as multi-tab support and code saving.
+        </li>
+        <li>
+            Designed tools to allow users to easily create new projects, including feedback, prompts, guidance, and grading.
+        </li>
+        <li>
+            Built a Django webserver to host and run the tool and its user interface.
+        </li>
+    </ul>
+    <details name="pythontutor"><summary><code>Final Report.docx</code> (PDF embed)</summary>
+        <div style="width: 95%" ratio="1.2941176471">
+            <embed src="{% static 'projects/PythonTutor - Final Report.pdf' %}" width="100%" height="100%" type="application/pdf"></embed>
+        </div>
+    </details>
+{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 75%" href="{% url 'pythontutor:list' %}">Open</a>
+    <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 20%" href="https://github.com/yodarocks1/pythontutor"><i class="fab fa-github" width="32"></i> GitHub</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% for layer in icon.layers %}
+    {% if layer.text %}
+        <span class="fa-layers-text {{ layer.class }}" {% if layer.transform %}data-fa-transform="{{ layer.transform }}"{% endif %}>{{ layer.value }}</span>
+    {% else %}
+        <i class="{{ layer.class }} fa-{{ layer.value }}" {% if layer.transform %}data-fa-transform="{{ layer.transform }}"{% endif %}></i>
+    {% endif %}
+{% empty %}
+    {% if icon.raw %}
+        {{ icon.raw|safe }}
+    {% else %}
+        <i class="{{ icon }}"></i>
+    {% endif %}
+{% endfor %}

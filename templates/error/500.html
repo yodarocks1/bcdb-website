@@ -1,0 +1,24 @@
+{% extends "error/base.html" %}
+
+{% block error_code_meaning %}
+    Something went drastically wrong server-side.
+{% endblock %}
+
+{% block error_reason %}
+<p>In theory, this page should never show. If it does, my server has no information on what led to it (since, lucky for you, I don't track you). If you <em>are</em> somehow seeing this, please let me know what happened to get you here at <a href="mailto:b.denbleyker@comcast.net">b.denbleyker@comcast.net</a>.</p>
+<p>Also, please check if it is a one-time error or if it repeats. Weird things often happen when servers are momentarily overloaded. One-time behavior would tell me to likely upgrade my server, whereas repeat behavior may point to a deeper issue.</p>
+<p>Thank you, and sorry for the inconvenience!</p>
+<p style="filter: opacity(0.5)">The server encountered an error when loading <a href="{{ request.get_full_path }}">{{ request.get_full_path }}</a></p>
+{% if user.is_superuser %}
+    <p>You're a superuser!</p>
+    <h3 class="text-decoration-underline mb-0"><span class="text-primary">Debug</span> Log</h3>
+    <pre id="debug-log">
+Loading...
+    </pre>
+    <script type="text/javascript">
+        fetch("{% url 'landing:latest_error' %}").then(v => v.json()).then(json => {
+            document.getElementById("debug-log").textContent = json;
+        });
+    </script>
+{% endif %}
+{% endblock %}

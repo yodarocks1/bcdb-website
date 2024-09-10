@@ -1,0 +1,28 @@
+{% extends "landing/base.html" %}
+
+{% block description %} {{ error_code }} error page {% endblock %}
+{% block title %} {{ error_code }} Error {% endblock %}
+
+{% block sectionsNav %}{% endblock %}
+
+{% block content %}
+<section class="resume-section" id="error">
+    <div class="resume-section-content">
+        <h1 class="mb-0" aria-label="Error {{ error_code }}">
+            <span aria-hidden="true">Error</span>
+            <span aria-hidden="true" class="text-primary">{{ error_code }}</span>
+        </h1>
+        <div class="subheading mb-5">
+            {% block error_code_meaning %}
+            That's an error!
+            {% endblock %}
+        </div>
+        {% block error_reason %}{% endblock %}
+    </div>
+</section>
+{% if error_code != 418 %}
+<div class="position-absolute end-0">
+    <a href="{% url 'landing:418' %}"><i class="fas fa-mug-hot"></i></a>
+</div>
+{% endif %}
+{% endblock %}

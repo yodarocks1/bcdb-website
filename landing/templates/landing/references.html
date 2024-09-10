@@ -1,0 +1,44 @@
+{% extends 'landing/base.html' %}
+
+{% block title %} References {% endblock %}
+{% block description %} Bennett references from literally anybody {% endblock %}
+{% block refsLink %} active {% endblock %}
+
+{% block sectionLinks %}
+{% for reference in references %}
+<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#{{ reference.user.username }}">{{ reference.name }}</a></li>
+{% endfor %}
+{% endblock %}
+
+{% block content %}
+<div class="m-2 pb-2 border-bottom border-primary text-center">
+    <span>
+        {% if user.is_authenticated %}
+        {% if user.is_active %}
+        <a href="{% url 'landing:new_reference' %}">Leave or modify a reference</a>
+        {% else %}
+        Leave or modify a reference (<a href="{% url 'landing:verify_email' %}">Verify email</a>)
+        {% endif %}
+        {% else %}
+        Leave a reference (<a href="{% url 'landing:createuser' %}">Create sign-in</a>)<br/>
+        Modify your reference (<a href="{% url 'landing:login' %}">Log in</a>)
+        {% endif %}
+    </span>
+    <span class="float-end text-secondary pe-3">
+        {{ references|length }} Reference{{ references|pluralize }}
+    </span>
+</div>
+{% for reference in references %}
+<div class="m-2 border-bottom border-primary position-relative">
+    <h2>{{ reference.name }}</h2>
+    <h4 class="position-absolute top-0 end-0 me-4" style="text-align: right">{{ reference.user.email }}<br/>{{ reference.relation }}</h4>
+    <p>{{ reference.reference|linebreaksbr }}</p>
+</div>
+{% empty %}
+<div class="m-2 border-bottom border-primary position-relative">
+    <h2>No References (Yet)</h2>
+    <p>Go add one above!</p>
+</div>
+{% endfor %}
+{% include "landing/not_ready.html" %}
+{% endblock %}

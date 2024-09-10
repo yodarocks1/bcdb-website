@@ -1,0 +1,10 @@
+{% extends "error/base.html" %}
+
+{% block error_code_meaning %}
+    I can't brew coffee!
+{% endblock %}
+
+{% block error_reason %}
+    <p>This website cannot brew coffee according to the <a href="https://www.rfc-editor.org/rfc/rfc2324#section-2.3.2">Hyper Text Coffee Pot Control Protocol</a>. Therefore, it returns the appropriate HTTP Status code (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418"><code>418 I'm a teapot</code></a>) specifying that it cannot brew coffee in order to prevent any confusion.</p>
+    <p>If this is eventually implemented, you will receive the appropriate response when using the <code>coffee://</code> protocol.</p>
+{% endblock %}

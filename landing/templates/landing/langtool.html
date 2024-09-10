@@ -1,0 +1,9 @@
+<li class="list-inline-item">
+    <a class="fv-noinherit" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" title="{{ skill.name }}"{% if skill.content or skill.projects and not no_project %} data-bs-content="{% if no_project %}{{ skill.content|safe }}{% else %}{{ skill.contents|safe }}{% endif %}"{% endif %}{% if skill.href %} style="color: inherit"{% endif %}>
+        {{ skill.icon|safe }}
+        <span class="sr-only print-show">{{ skill.name }}</span>
+        <ul class="print-show" style="display: none">
+            {{ skill.projects_html|safe }}
+        </ul>
+    </a>
+</li>

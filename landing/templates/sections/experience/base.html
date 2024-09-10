@@ -1,0 +1,36 @@
+<div class="w-100 mb-5 {% block extra_classes %}{% if job.type == 'volunteer' %}collapse volunteer{% endif %}{% endblock %}" data-experience-type="{% block experience_type %}{{ job.type }}{% endblock %}">
+    <div class="d-flex flex-row justify-content-between">
+        <div class="flex-grow-1">
+            {% block left %}
+            <h3 class="mb-0">{% block title %}{{ job.title }}{% endblock %}</h3>
+            <div class="subheading">{% block subtitle %}{{ job.subtitle }}{% endblock %}</div>
+            {% endblock %}
+        </div>
+        <div class="flex-shrink-0" style="text-align: right">
+            {% block right %}
+            <span class="text-primary fw-bold">{% block time_span %}{{ job.time_span }}{% endblock %}</span><br/>
+            <span>{% block employer %}<em>Reference</em>: {{ job.employer }}{% endblock %}</span>
+            {% endblock %}
+        </div>
+    </div>
+    {% block description %}
+    {% if job.description_succinct %}
+    <div class="succinct-off">
+        <ul>
+            {{ job.description|unordered_list }}
+        </ul>
+    </div>
+    <div class="succinct-on very-succinct-off">
+        <ul>
+            {{ job.description_succinct|unordered_list }}
+        </ul>
+    </div>
+    {% else %}
+    <div class="very-succinct-off">
+        <ul>
+            {{ job.description|unordered_list }}
+        </ul>
+    </div>
+    {% endif %}
+    {% endblock %}
+</div>

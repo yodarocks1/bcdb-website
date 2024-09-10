@@ -1,0 +1,52 @@
+{% extends "admin/change_form.html" %}
+
+{% block extrahead %}{{ block.super }}
+{% include "pythontutor/monaco.html" %}
+{% include "pythontutor/base/head.html" %}
+<style type="text/css">
+    #content {
+        background: rgb(18, 18, 18);
+        color: white !important;
+    }
+    .monaco-tab-selectors {
+        background: rgb(18, 18, 18) !important;
+    }
+    .monaco-tab::after {
+        background: rgb(18, 18, 18) !important;
+    }
+    .deletelink {
+        height: fit-content !important;
+    }
+    .monaco-language-selector, .monaco-main-selector {
+        font-size: larger;
+    }
+    nav {
+        box-sizing: unset;
+    }
+    #content {
+        height: 100%;
+    }
+    #footer {
+        padding: 0;
+    }
+
+    /* Fixes for Django 5.0 */
+    .aligned label {
+        float: left;
+	min-width: unset;
+    }
+</style>
+{% endblock %}
+{% block footer %}
+{{ block.super }}
+{% include "pythontutor/base/foot.html" %}
+<script type="text/javascript">
+    /* Fixes for Django 5.0 */
+    window.addEventListener('load', () => {
+        let cf = document.querySelector(".field-code");
+        cf.replaceChild(cf.querySelector("div.flex-container"), cf.querySelector("div"));
+        cf.querySelector("div.flex-container").classList.remove("flex-container");
+    });
+</script>
+{% endblock %}
+

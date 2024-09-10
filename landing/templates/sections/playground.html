@@ -1,0 +1,342 @@
+{% load static %}
+
+<div class="playground" style="min-height: 100vh">
+    <h1>Project Sandbox</h1>
+    <style>
+        .playground .btn-check + label {
+            border-radius: 0;
+        }
+        .playground .btn-check:not(:checked) + label:not(:hover):not(:focus) {
+            color: lightgray;
+        }
+        .playground .btn-check + label:hover,
+        .playground .btn-check + label:focus,
+        .playground .btn-check:checked + label {
+            border-left: 1pt solid white;
+            border-right: 1pt solid white;
+        }
+    </style>
+    <details id="bricks">
+        <summary><h2>Bricks</h2></summary>
+        <style>
+            .playground #bricks .box {
+                background: transparent;
+                height: 1.333em;
+                width: 1em;
+                text-align: center;
+                transition: all 0.5s;
+            }
+            .playground #bricks .brickwork .brickwork-row:nth-child(3n+1) .brickwork-brick .cover-box {
+                background: linear-gradient(to bottom, #4c4, #0a0);
+            }
+            .playground #bricks .brickwork .brickwork-row:nth-child(3n) .brickwork-brick .cover-box {
+                background: linear-gradient(to bottom, #44c, #00a);
+            }
+            .playground #bricks .brickwork .brickwork-row:nth-child(3n+2) .brickwork-brick .cover-box {
+                background: linear-gradient(to bottom, #c44, #a00);
+            }
+        </style>
+        <form class="bg-secondary label-lightgray d-flex" id="brickwork-type">
+            <input type="radio" class="btn-check" name="brickwork-type" id="brickwork-default" value="" autocomplete="off" checked></input>
+            <label class="btn btn-outline-secondary" for="brickwork-default">Default</label>
+
+            <input type="radio" class="btn-check" name="brickwork-type" id="brickwork-herringbone" value="herringbone" autocomplete="off"></input>
+            <label class="btn btn-outline-secondary" for="brickwork-herringbone">Herringbone</label>
+
+            <input type="radio" class="btn-check" name="brickwork-type" id="brickwork-shingles" value="shingles" autocomplete="off"></input>
+            <label class="btn btn-outline-secondary" for="brickwork-shingles">Shingles</label>
+
+            <input type="radio" class="btn-check" name="brickwork-type" id="brickwork-flanders" value="flanders" autocomplete="off"></input>
+            <label class="btn btn-outline-secondary" for="brickwork-flanders">Flanders-esque (WIP)</label>
+        </form>
+        <div class="brickwork brickwork-auto" id="brickwork-main" loading="lazy">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <script src="{% static 'brickwork.js' %}" type="text/javascript"></script>
+        <script type="text/javascript">
+            document.getElementById("brickwork-type").onchange = () => {
+                let newValue = document.querySelector('input[name="brickwork-type"]:checked').value;
+                let brickwork = document.querySelector(".playground .brickwork");
+                brickwork.classList.remove("herringbone");
+                brickwork.classList.remove("shingles");
+                brickwork.classList.remove("flanders");
+                if (newValue !== "") {
+                    brickwork.classList.add(newValue);
+                }
+            }
+        </script>
+    </details>
+    <details id="selection">
+        <summary><h2>Selection</h2></summary>
+        <style>
+            .playground #selection .view {
+                position: relative;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            .playground #selection .view.acrylic .box {
+                color: #fff;
+                display: inline-block;
+                padding: 1rem;
+                background: radial-gradient(circle at var(--hovered-relative-left) var(--hovered-relative-top), #888888aa, #7e7e7eae 10px, #7c7c7cbb 40px, #707070bf 80px, #555555dd 400px);
+                backdrop-filter: blur(100px);
+                border-radius: 5px;
+            }
+            .playground #selection .view.acrylic {
+                background: linear-gradient(to right,
+                    hsl(0, 100%, 50%) 0%,
+                    hsl(60, 100%, 50%) 18%,
+                    hsl(120, 100%, 50%) 36%,
+                    hsl(180, 100%, 50%) 54%,
+                    hsl(240, 100%, 50%) 72%,
+                    hsl(300, 100%, 50%) 90%,
+                    hsl(360, 100%, 50%) 108%
+                );
+            }
+            @media (any-pointer: coarse) {
+                .playground #selection .view.acrylic {
+                    margin-right: 2em;
+                    touch-action: none;
+                }
+            }
+            .playground #selection .view.followbox .box {
+                color: #fff;
+                display: inline-block;
+                padding: 1rem;
+                border-radius: 5px
+            }
+            .playground #selection .view.followbox:not(.acrylic) .box:nth-child(3n) {
+                background: #a00;
+            }
+            .playground #selection .view.followbox:not(.acrylic) .box:nth-child(3n+1) {
+                background: #0a0;
+            }
+            .playground #selection .view.followbox:not(.acrylic) .box:nth-child(3n+2) {
+                background: #00a;
+            }
+            .playground #selection .view.followbox::after {
+                content: " ";
+                display: block;
+                position: absolute;
+                width: var(--hovered-width);
+                height: var(--hovered-height);
+                left: var(--hovered-left);
+                top: var(--hovered-top);
+                visibility: var(--hovered-visibility);
+                background: #6664;
+                border: 1pt solid black;
+                pointer-events: none;
+                transition: all .2s ease-out;
+                border-radius: 5px;
+            }
+            .playground #selection .deletable {
+                transition: margin .4s ease-in 0s, border-radius 0s linear .4s;
+                position: relative;
+            }
+            .playground #selection .deletable::before {
+                width: 0;
+                transition: width .4s ease-in, padding .4s ease-in, margin .4s ease-in;
+                content: "×";
+                overflow: clip;
+                position: absolute;
+                display: inline-block;
+                background: #ff0000;
+                color: white;
+                border-radius: 5px 0 0 5px;
+                padding: 1rem 0 1rem 0;
+                top: 0;
+                left: 0;
+                opacity: 0.95;
+                backdrop-filter: blur(100px);
+            }
+            .playground #selection .deletable:hover::before {
+                content: "×";
+                width: 1.75rem;
+                padding: 1rem 0.5rem 1rem 0.5rem;
+                margin-left: -1.75em;
+                cursor: pointer;
+                transition: width .4s ease-out, padding .4s ease-out, margin .4s ease-out;
+            }
+            .playground #selection .deletable:hover {
+                margin-left: 1.75rem;
+                transition: margin .4s ease-out;
+                border-radius: 0 5px 5px 0 !important;
+            }
+        </style>
+        <form class="bg-secondary label-lightgray d-flex" id="selection-type">
+            <input type="radio" class="btn-check" name="selection-type" id="selection-acrylic" value="acrylic" autocomplete="off" checked></input>
+            <label class="btn btn-outline-secondary" for="selection-acrylic">Acrylic</label>
+
+            <input type="radio" class="btn-check" name="selection-type" id="selection-followbox" value="followbox" autocomplete="off"></input>
+            <label class="btn btn-outline-secondary" for="selection-followbox">Box</label>
+        </form>
+        <div class="view acrylic">
+            <div class="box">A</div>
+            <div class="box">B</div>
+            <div class="box">C</div>
+            <div class="box">D</div>
+            <div class="box">E</div>
+            <div class="box">F</div>
+            <div class="box">This one's a little longer</div>
+            <br/>
+            <div class="box">G</div>
+            <div class="box">H</div>
+            <div class="box">I</div>
+            <div class="box">J</div>
+            <div class="box">K</div>
+            <div class="box">L</div>
+            <div class="box deletable">This item is deletable</div>
+            <div class="box">M</div>
+            <div class="box">N</div>
+            <div class="box">O</div>
+            <div class="box">P</div>
+            <div class="box">This one ought to be really, really long, right?</div>
+            <div class="box">Q</div>
+            <div class="box">R</div>
+            <div class="box">S</div>
+            <div class="box">T</div>
+            <div class="box">U</div>
+            <div class="box">V</div>
+            <div class="box">W</div>
+            <div class="box">X</div>
+            <div class="box">Y</div>
+            <div class="box">Z</div>
+        </div>
+        <script type="text/javascript">
+            document.getElementById("selection-type").onchange = () => {
+                let newValue = document.querySelector('input[name="selection-type"]:checked').value;
+                let view = document.querySelector(".playground #selection .view");
+                view.classList.remove("acrylic");
+                view.classList.remove("followbox");
+                if (newValue !== "") {
+                    view.classList.add(newValue);
+                }
+            }
+            function updateBoxHover(e) {
+                let hovered = e.target;
+                let view = document.querySelector(".playground #selection .view");
+                let hRect = hovered.getBoundingClientRect();
+                let vRect = view.getBoundingClientRect();
+                view.style.setProperty("--hovered-left", hRect.left - vRect.left + "px");
+                view.style.setProperty("--hovered-top", hRect.top - vRect.top + "px");
+                view.style.setProperty("--hovered-width", hRect.width + "px");
+                view.style.setProperty("--hovered-height", hRect.height + "px");
+                view.style.setProperty("--hovered-visibility", "visible");
+            }
+            function updateMousePosition(e) {
+                for (let box of document.querySelectorAll(".playground #selection .view .box")) {
+                    let rect = box.getBoundingClientRect();
+                    box.style.setProperty("--hovered-relative-left", e.clientX - rect.left + "px");
+                    box.style.setProperty("--hovered-relative-top", e.clientY - rect.top + "px");
+                }
+            }
+            var pickedTouch = null;
+            function getTouchTarget(touch) {
+                return document.elementFromPoint(touch.clientX, touch.clientY);
+            }
+            function updateTouchPosition(e, exclude=[]) {
+                let touch = getTouch(e, exclude=exclude);
+                console.log(touch);
+                console.log(exclude);
+                if (touch === null) {
+                    hideHover();
+                } else {
+                    for (let box of document.querySelectorAll(".playground #selection .view .box")) {
+                        let rect = box.getBoundingClientRect();
+                        box.style.setProperty("--hovered-relative-left", touch.clientX - rect.left + "px");
+                        box.style.setProperty("--hovered-relative-top", touch.clientY - rect.top + "px");
+                    }
+                }
+            }
+            function getTouch(e, exclude=[]) {
+                // Keep current touch, if any
+                if (pickedTouch !== null) {
+                    for (let aTouch of e.touches) {
+                        if (exclude.includes(aTouch.identifier)) continue;
+                        if (aTouch.identifier === pickedTouch) {
+                            let target = getTouchTarget(aTouch);
+                            if (target !== null && target.classList.contains("box")) {
+                                return aTouch;
+                            }
+                        }
+                    }
+                }
+                
+                // Find a new touch
+                for (let aTouch of e.touches) {
+                    if (exclude.includes(aTouch.identifier)) continue;
+                    let target = getTouchTarget(aTouch);
+                    if (target !== null && target.classList.contains("box")) {
+                        pickedTouch = aTouch.identifier;
+                        return aTouch;
+                    }
+                }
+
+                // No valid touch
+                pickedTouch = null;
+                return null;
+            }
+            function endTouch(e) {
+                console.log("end");
+                updateTouchPosition(e, exclude=e.changedTouches);
+            }
+            function hideHover() {
+                let view = document.querySelector(".playground #selection .view");
+                view.style.setProperty("--hovered-visibility", "hidden");
+                for (let box of document.querySelectorAll(".playground #selection .view .box")) {
+                    box.style.setProperty("--hovered-relative-left", "200vw");
+                    box.style.setProperty("--hovered-relative-top", "200vh");
+                }
+            }
+            for (let box of document.querySelectorAll(".playground #selection .view .box")) {
+                box.addEventListener('mouseenter', updateBoxHover);
+                box.addEventListener('mousemove', updateMousePosition);
+                box.addEventListener('mouseout', hideHover);
+            }
+            document.addEventListener('touchmove', updateTouchPosition);
+            document.addEventListener('touchend', endTouch);
+            hideHover();
+            function deleteOnOutside(e) {
+                let rect = e.target.getBoundingClientRect();
+                if (e.clientX < rect.x || e.clientX > rect.x + rect.width || e.clientY < rect.y || e.clientY > rect.y + rect.height) {
+                    e.target.remove();
+                }
+            }
+            for (let deletable of document.querySelectorAll(".playground #selection .deletable")) {
+                deletable.addEventListener('click', deleteOnOutside);
+            }
+        </script>
+    </details>
+</div>

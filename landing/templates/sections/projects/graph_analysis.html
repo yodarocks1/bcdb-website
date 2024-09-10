@@ -1,0 +1,76 @@
+{% extends 'landing/project_base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <img width="95%" id="usu_graph_analysis_image" ratio src="{% static 'landing/USU Graph Similarity.png' %}" class="extra"></img>
+    <p class="succinct-off">This research project aimed to explore the relationships between various academic units at Utah State University (USU) through graph analysis. By creating a graph representation of USU's colleges, departments, programs, and courses, the study sought to understand the interconnections and similarities between these entities. The research employed various similarity scoring methods and community analysis techniques, such as the Jaccard coefficient, SimRank, and the Louvain algorithm, to determine how programs, particularly the Computer Science department, are related within the university's structure. The findings offered insights into whether Computer Science should be placed in the College of Science or Engineering and provided general guidance on program switching and minors for students. The project highlighted the importance of data quality and graph structure in educational data analysis.</p>
+    <ul class="succinct-off">
+        <li>
+            Conducted graph analysis on academic programs at Utah State University to explore interconnections between colleges, departments, and courses.
+        </li>
+        <li>
+            Developed a comprehensive data model using NetworkX to visualize and analyze relationships across 8 colleges, 52 departments, and 647 academic programs.
+        </li>
+        <li>
+            Utilized Jaccard, SimRank, and Panther similarity algorithms to measure and compare the academic similarity of programs within USU.
+        </li>
+        <li>
+            Implemented community detection algorithms (e.g., Louvain) to identify clusters of closely related academic programs.
+        </li>
+        <li>
+            Performed web scraping and data extraction using Python to collect program, course, and enrollment data from university systems.
+        </li>
+        <li>
+            Presented findings that informed discussions on the optimal placement of the Computer Science department within university colleges.
+        </li>
+        <li>
+            Collaborated with the USU Registrar’s Office to obtain and validate academic data while ensuring FERPA compliance.
+        </li>
+        <li>
+            Generated insights on program similarities that support academic advising and curriculum development.
+        </li>
+    </ul>
+    <p class="succinct-on">Analyzed academic relationships at Utah State University using graph theory to assess program connections and department placements.</p>
+    <ul class="succinct-on">
+        <li>
+            Conducted graph analysis of USU’s academic structure.
+        </li>
+        <li>
+            Developed data models with NetworkX.
+        </li>
+        <li>
+            Applied similarity algorithms to compare programs.
+        </li>
+        <li>
+            Used community detection to identify related clusters.
+        </li>
+        <li>
+            Scraped and extracted data using Python.
+        </li>
+        <li>
+            Presented findings on department placement.
+        </li>
+        <li>
+            Ensured data compliance with FERPA.
+        </li>
+        <li>
+            Provided insights for academic advising.
+        </li>
+    </ul>
+    <h4>Abstract:</h4>
+    <p>This study shows the similarity between programs, departments, and colleges at Utah State University. With the data collected from the university’s website, connections were made between the different programs and departments. Data was collected through the university’s website and registrar. After the data was obtained and preprocessed a graph with all of the departments and associated programs and courses was created. It analyzes the similarity between programs, majors, and minors at USU using a variety of algorithms like Jaccard, SimRank, and Panther Similarity, and Common Neighbor Centrality as well as the Louvain algorithm. Computer Science is used as an example, and is shown to easily fit into either the College of Engineering or the College of Science quite easily.</p>
+    <details steals="usu_graph_analysis_image" name="usu_graph_analysis"><summary><code>Presentation.pptx</code> (PDF embed)</summary>
+        <div style="width: 95%" ratio="0.562">
+            <embed src="{% static 'projects/Graph Analysis Presentation.pdf' %}" width="100%" height="100%" type="application/pdf"></embed>
+        </div>
+    </details>
+    <details name="usu_graph_analysis"><summary><code>Final Report.docx</code> (PDF embed)</summary>
+        <div style="width: 95%" ratio="1.2941176471">
+            <embed src="{% static 'projects/Graph Analysis - Final Report.pdf' %}" width="100%" height="100%" type="application/pdf"></embed>
+        </div>
+    </details>
+{% endblock %}
+{% block buttons %}
+    <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 100%" href="https://github.com/yodarocks1/USUClassNetwork"><i class="fab fa-github" width="32"></i> GitHub</a>
+{% endblock %}

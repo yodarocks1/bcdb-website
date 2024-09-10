@@ -1,0 +1,21 @@
+<!-- Read More-->
+<section class="resume-section d-print-none" id="more">
+    <div class="resume-section-content">
+        <h2 class="mb-5">Read More</h2>
+        <a class="btn btn-primary btn-lg text-light d-block w-100 mb-4 fs-4" href="{% url 'portfolio:all' %}">Overall Portfolio <i class="fas fa-external-link" aria-hidden="true" width="24"></i></a>
+        <div class="card card-theme">
+            <div class="card-header text-center">
+                <a class="dropdown-toggle h3" data-bs-toggle="collapse" role="button" href="#portfolios" aria-controls="portfolios">Subject Portfolios</a>
+            </div>
+            <div id="portfolios" class="collapse show">
+                <ul class="card-body d-flex justify-content-evenly">
+                    <li><a class="btn btn-primary btn-lg text-light" href="{% url 'portfolio:coding' %}" hover-text="Coding" aria-label="Coding portfolio"><i class="fas fa-terminal" aria-hidden="true" width="24"></i></a></li>
+                    <li><a class="btn btn-primary btn-lg text-light" href="{% url 'portfolio:writing' %}" hover-text="Writing" aria-label="Writing portfolio"><i class="fas fa-pen-to-square" aria-hidden="true" width="24"></i></a></li>
+                    <li><a class="btn btn-primary btn-lg text-light" href="{% url 'portfolio:research' %}" hover-text="Research" aria-label="Research portfolio"><i class="fas fa-newspaper" aria-hidden="true" width="24"></i></a></li>
+                    <li><a class="btn btn-primary btn-lg text-light" href="{% url 'portfolio:audio' %}" hover-text="Audio" aria-label="Audio portfolio"><i class="fas fa-file-audio" aria-hidden="true" width="24"></i></a></li>
+                    <li><a class="btn btn-primary btn-lg text-light" href="{% url 'portfolio:other' %}" hover-text="Other" aria-label="Other projects"><i class="fas fa-icons" aria-hidden="true" width="24"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

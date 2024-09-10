@@ -1,0 +1,24 @@
+<div class="bg-warning text-danger p-2 d-flex" style="border-top: solid currentColor 2.5pt; font-weight: bold; align-items: center; flex-wrap: nowrap">
+    <div>
+        <i class="fas fa-screwdriver-wrench ps-3" style="font-size: x-large"></i>
+    </div>
+    <div class="ps-3">
+        <p>This page is not ready to roll quite yet. Check out the pages that I've been spending most of my time on:</p>
+        <ul>
+            <li><a href="{% url 'landing:projects' %}">Projects</a></li>
+            <li><a href="{% url 'landing:resume' %}">Résumé</a></li>
+        </ul>
+    </div>
+</div>
+{% if superuser_sign %}
+{% if user.is_superuser %}
+    <hr class="m-0 text-danger" style="border-top: solid currentColor 2.5pt; opacity: 1;" />
+    <p class="bg-warning text-danger p-2 m-0 pos-sticky-top" style="font-weight: bold; text-align: center; border-bottom: solid currentColor 2.5pt; z-index: 1">
+        You are a superuser.
+        <br/>
+        Other users will not see the content below.
+        <i class="fas fa-triangle-exclamation top--lg-0 pt-1" style="position: absolute; font-size: x-large; right: 1em; top: calc(50% - 1rem)"></i>
+        <i class="fas fa-triangle-exclamation top--lg-0 pt-1" style="position: absolute; font-size: x-large; left: 1em; top: calc(50% - 1rem)"></i>
+    </p>
+{% endif %}
+{% endif %}

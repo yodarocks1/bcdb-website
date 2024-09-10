@@ -1,0 +1,39 @@
+{% extends 'landing/base.html' %}
+
+{% block sectionsNav %}{% endblock %}
+
+{% block content %}
+<form method="POST" class="m-2">
+    {% csrf_token %}
+    <div>
+        <label for="username" class="form-label animate">Username</label>
+        <input type="text" id="username" name="username" class="form-control"></input>
+    </div>
+    <div class="mb-4">
+        <label for="password" class="form-label animate">Password</label>
+        <input type="password" id="password" name="password" class="form-control"></input>
+    </div>
+    <button type="submit" class="btn btn-primary text-white">Log In</button>
+</form>
+{% if error %}
+{{ error }}
+{% endif %}
+{% endblock %}
+
+{% block footer %}
+    <script type="text/javascript">
+        function animateLabel(input) {
+            let label = document.querySelector("[for=" + input.id + "]");
+            input.onchange = () => {
+                if (input.value.length === 0) {
+                    label.classList.add("animate");
+                } else {
+                    label.classList.remove("animate");
+                }
+            }
+        }
+        animateLabel(document.getElementById("username"));
+        animateLabel(document.getElementById("password"));
+    </script>
+{% endblock %}
+

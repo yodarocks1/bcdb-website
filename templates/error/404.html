@@ -1,0 +1,10 @@
+{% extends "error/base.html" %}
+
+{% block error_code_meaning %}
+    The URL you provided doesn't point to any page on record.
+{% endblock %}
+
+{% block error_reason %}
+    <p>The page could have been moved or deleted, the link you clicked is broken, or the URL is otherwise wrong.</p>
+    <p style="filter: opacity(0.5)">Failed to find a page matching <a href="/{{ request.get_full_path }}">{{ request.get_full_path }}</a></p>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!-- Skills-->
+<section class="resume-section" id="skills">
+    <div class="resume-section-content">
+        <h2 class="mb-5">Skills</h2>
+        <div class="subheading mb-3">Programming Languages &amp; Tools</div>
+
+        <!-- Languages -->
+        <ul class="list-inline dev-icons print-listify">
+            {% for language in languages %}
+                {% include 'landing/langtool.html' with skill=language only %}
+            {% endfor %}
+        </ul>
+        
+        <!-- Tools -->
+        <ul class="list-inline dev-icons print-listify">
+            {% for tool in tools %}
+                {% include 'landing/langtool.html' with skill=tool only %}
+            {% endfor %}
+        </ul>
+
+        <!-- Workflows -->
+        <div class="subheading mb-3" aria-hidden="true">Workflows</div>
+        <ul class="fa-ul mb-0" aria-label="Workflows">
+            {% for workflow in workflows %}
+            <li>
+                <span class="fa-li" style="color: var(--bs-primary)"><i class="fas fa-check"></i></span>
+                {{ workflow }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>

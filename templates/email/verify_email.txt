@@ -1,0 +1,9 @@
+Hi {{ user.username }},
+
+Just here to verify your email!
+
+Go to {{ link }} to activate your account.
+The token expires on {{ expiry }}.
+
+ - Bennett DenBleyker
+   (automated email)

@@ -1,0 +1,15 @@
+<!-- Awards-->
+<section class="resume-section" id="awards">
+    <div class="resume-section-content">
+        <h2 class="mb-5">Awards & Certifications</h2>
+        <ul class="fa-ul mb-0">
+            {% for award in awards %}
+            <li>
+                <span class="fa-li"><i class="fas fa-{% if award.2 %}{{ award.2 }}{% else %}circle-chevron-right{% endif %} text-primary"></i></span>
+                {{ award.0 }}
+                <span class="float-end fst-italic">{{ award.1 }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>

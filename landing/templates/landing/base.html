@@ -1,0 +1,189 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" theme='{{ theme|default:"default" }}' primaryColor='{{ primaryColor|default:"" }}' style="height: 100%">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="{% block description %}{% endblock %}" />
+        <meta name="author" content="Bennett DenBleyker" />
+        <title>{% block title %}Home{% endblock %} - Bennett DenBleyker</title>
+        <link rel="icon" type="image/svg+xml" href="{% url 'landing:favicon' %}" sizes="any" />
+        <link rel="manifest" type="application/json" href="{% url 'landing:manifest' %}" crossorigin="use-credentials" />
+        <script src="https://kit.fontawesome.com/4a8c74f03b.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link type="text/css" href="{% static 'style.css' %}" rel="stylesheet" />
+        {% block header %}{% endblock %}
+    </head>
+    <body id="page-top">
+        <a href="#content" id="skip" class="fv-light">Skip to main content</a>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top d-print-none" style="overflow-y: auto; background-image: linear-gradient(45deg, rgba(0,0,0,0.25), transparent)" id="sideNav">
+            <div class="order-lg-2">
+                <button aria-hidden="true" onclick="toggleTheme()" class="fv-noinherit" style="filter: drop-shadow(1px 1px 1px black)">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-left-right"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button aria-hidden="true" data-bs-toggle="modal" data-bs-target="#primaryColorModal" class="fv-noinherit" style="filter: drop-shadow(1px 1px 1px black); color: transparent; background-color: var(--bs-primary)">
+                    █
+                </button>
+            </div>
+            <a class="navbar-brand js-scroll-trigger" style="filter: none !important" href="/">
+                <span class="d-block position-absolute translate-middle" aria-hidden="true" style="top: 1.75rem; left: 50%" id="brand">B<span>/</span>C<span>/</span>DB</span>
+                <span class="d-none d-lg-block" style="margin-top: 2.5rem"><img id="profile-img" class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{% static 'profile.jpg' %}" alt="Bennett atop Box Elder Peak" width="256" /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav" aria-label="Navigation">
+                    <li class="nav-item"><a class="nav-link {% block homeLink %}{% endblock %}" href="{% url 'landing:home' %}">Home</a></li>
+		    <li class="nav-item"><a class="nav-link {% block projLink %}{% endblock %}" href="{% url 'landing:projects' %}">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link {% block portLink %}{% endblock %}" href="{% url 'portfolio:all' %}">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link {% block resuLink %}{% endblock %}" href="{% url 'landing:resume' %}">Résumé</a></li>
+                    <li class="nav-item"><a class="nav-link {% block refsLink %}{% endblock %}" href="{% url 'landing:references' %}">References</a></li>
+                    {% block sectionsNav %}
+                    <button class="nav-link active btn btn-link dropdown-toggle mt-4 mb-0 h3 fs-4 fv-ul" style="box-shadow: none" data-bs-target="#sectionLinksGroup" data-bs-toggle="collapse" aria-expanded="true" aria-controls="sectionLinksGroup" aria-label="Dropdown for this page's sections">Sections</button>
+                    <ul class="collapse show ps-0" id="sectionLinksGroup" aria-label="Page sections">
+                        {% block sectionLinks %}
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                        {% endblock %}
+                    </ul>
+                    {% endblock %}
+                    {% if user.is_authenticated %}
+                    <li class="nav-item nav-link">
+                        {{ user }} (<a class="nav-link d-inline-block" href="{% url 'landing:logout' %}">Log Out</a>)
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <!-- Page Content-->
+        <div class="container-fluid p-0" id="content">
+            {% block wip %}
+            <div class="w-100 bg-warning pos-sticky-top print-grayscale text-danger" style="height: 3em; z-index: 1; align-content: center; font-size: larger; opacity: 0.8; border-bottom: solid currentColor 2.5pt; font-weight: bold">
+                <i class="fas fa-triangle-exclamation ps-4 d-none"></i><i class="fas fa-screwdriver-wrench ps-4"></i>
+                <span class="ps-4" style="text-align: center">This website is currently under construction.</span>
+                <span style="float: right; font-size: x-small; padding-right: 1em">First Published: 6/22/24<br/>Last Update: 9/02/24</span>
+            </div>
+            {% endblock %}
+            {% block content %}
+            {% include 'sections/about.html' only %}
+            <div class="d-print-none" style="width: 100%">
+                <hr class="m-0 d-inline-block succinct-off" style="width: calc(100% - 111px - 2em)"/>
+                <hr class="m-0 d-inline-block succinct-on" style="width: calc(100% - 259px - 4em)"/>
+                <div class="form-check form-check-inline form-switch" style="width: 102px; vertical-align: sub; margin-right: 0;">
+                    <input class="form-check-input" type="checkbox" role="switch" id="succinctSwitch" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="Hide all of the nice-sounding mumbo-jumbo." data-bs-content="Just give me the gist!" data-bs-placement="left"></input>
+                    <label class="form-check-label" for="succinctSwitch">Succinct</label>
+                </div>
+                <hr class="m-0 d-inline-block succinct-on" style="width: 2em;"/>
+                <div class="form-check form-check-inline form-switch succinct-on" style="width: 140px; vertical-align: sub; margin-right: 0;">
+                    <input class="form-check-input" type="checkbox" role="switch" id="verySuccinctSwitch" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="Hide all of the descriptions." data-bs-content="Just tell me the very, <em>very</em> basics." data-bs-placement="left"></input>
+                    <label class="form-check-label" for="verySuccinctSwitch">Very Succinct</label>
+                </div>
+                <hr class="m-0 d-inline-block" style="width: 2em"/>
+            </div>
+            {% endblock %}
+
+            <!-- Print only -->
+            <section hidden class="resume-section d-print-block" id="printmore">
+                <h2 class="d-inline-block">Read More</h2>
+                <span class="h3">at</span>
+                <span class="h2 text-primary">{{ request.get_host }}</span>
+            </section>
+        </div>
+        <div class="modal fade" id="primaryColorModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="background-color: var(--bs-body-bg); color: var(--bs-body-color)">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Set the Primary Color</h5>
+                        <button type="button" class="btn-close btn-close-theme" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input id="primaryColorInput" style="width: 50%; height: 3em" type="color" onchange="changePrimary(this)"></input>
+                        <label for="primaryColorInput" class="h3 text-primary ms-1" style="vertical-align: top; text-align: right; width: 45%; padding-top: 5px; font-size: 2rem">Open Color Picker</label>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" onclick="resetPrimaryColor()">Reset to theme</button>
+                        <button type="button" class="btn btn-primary text-light" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="toast position-fixed bottom-0 end-0 m-2 show" role="alert" aria-live="assertive" aria-atomic="true" style="background-color: var(--bs-body-bg); color: var(--bs-body-color)">
+            {% if message.extra_tags %}
+            <div class="toast-header" style="background-color: rgba(0,0,0,0.2)">
+                <strong class="me-auto text-primary">{{ message.extra_tags }}</strong>
+                <small>&lt;System&gt;</small>
+                <button type="button" class="btn-close btn-close-theme" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            {% endif %}
+            <div class="toast-body">
+                {{ message }}
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <!-- Cookie Consent -->
+        <!--<div id="cookieconsent" role="alert" aria-hidden="true" class="toast position-fixed" data-bs-autohide="false" style="bottom: 1em; background-color: var(--bs-body-bg); color: var(--bs-body-color); margin-left: 1em; border: solid var(--bs-body-color) thin; width: max-content">
+            <div class="toast-header" style="background-color: rgba(0,0,0,0.1)">
+                <span class="me-auto text-primary fw-bold fs-5">Cookie Consent</span>
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="toast">Accept</button>
+            </div>
+            <div class="toast-body" style="background-color: rgba(255,255,255,0.02)">
+                <p class="m-0">Hey! I use a whole 2 cookies, keeping track of your preferred theme (dark vs. light), and your chosen theme color.</p>
+                <p class="m-0">(Oh - and one to make sure this only shows up once)</p>
+                <p class="m-0">These are used solely on the client side to give you a consistent visual experience.</p>
+            </div>
+        <script type="text/javascript">
+            var cookieProps = {
+                privacyPolicyUrl: undefined, // the URL of your privacy policy page
+                legalNoticeUrl: undefined, // the URL of you legal notice page (Impressum)
+                contentURL: "/cookie-consent-content", // this folder must contain the language-files in the needed languages (`[lang].js`)
+                buttonAgreeClass: "btn btn-primary", // the "Agree to all" buttons class
+                buttonDontAgreeClass: "btn btn-link text-decoration-none", // the "I do not agree" buttons class
+                buttonSaveClass: "btn btn-secondary", // the "Save selection" buttons class
+                autoShowModal: true, // disable autoShowModal on the privacy policy and legal notice pages, to make these pages readable
+                alsoUseLocalStorage: true, // if true, the settings are stored in localStorage, too
+                postSelectionCallback: undefined, // callback function, called after the user has saved the settings
+                lang: navigator.language, // the language, in which the modal is shown
+                defaultLang: "en", // default language, if `lang` is not available as translation in `cookie-consent-content`
+                categories: ["necessary", "personalization"], // the categories for selection, must be contained in the language files
+                cookieName: "cookie-consent-settings",  // the name of the cookie in which the configuration is stored as JSON
+                cookieStorageDays: 365, // the duration the cookie configuration is stored on the client
+                modalId: "bootstrapCookieConsentSettingsModal" // the id of the modal dialog element
+            }
+            var cookieSettings = new BootstrapCookieConsentSettings(cookieProps)
+        </script>
+        </div> -->
+        {% block footer %}
+        <script type="text/javascript">
+            document.getElementById("succinctSwitch").addEventListener("click", (e) => {
+                if (e.target.checked) {
+                    document.getElementById("content").classList.add("succinct");
+                } else {
+                    document.getElementById("content").classList.remove("succinct");
+                    document.getElementById("content").classList.remove("very-succinct");
+                    document.getElementById("verySuccinctSwitch").checked = false;
+                }
+            });
+            document.getElementById("verySuccinctSwitch").addEventListener("click", (e) => {
+                if (e.target.checked) {
+                    document.getElementById("content").classList.add("very-succinct");
+                } else {
+                    document.getElementById("content").classList.remove("very-succinct");
+                }
+            });
+        </script>
+        {% endblock %}
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script type="text/javascript" src="{% static 'main.js' %}"></script>
+    </body>
+</html>
+

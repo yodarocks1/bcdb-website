@@ -1,0 +1,45 @@
+{% load static %}
+
+<!-- Books -->
+<div style="width: 100%">
+    <hr class="m-0 d-inline-block" style="width: calc(100% - 141px - 2em)"/>
+    <div class="form-check form-check-inline form-switch" style="width: 132px; vertical-align: sub; margin-right: 0;">
+        <input class="form-check-input" type="checkbox" role="switch" id="herringboneSwitch"></input>
+        <label class="form-check-label" for="herringboneSwitch">Herringbone</label>
+    </div>
+    <hr class="m-0 d-inline-block" style="width: 2em"/>
+</div>
+<section class="resume-section" id="books" style="min-height: unset">
+    <div class="resume-section-content">
+        <div class="brickwork brickwork-auto" id="brickwork-books" loading="lazy">
+            <img src="{% static 'books/The Federalist Papers.jpg' %}"></img>
+            <img src="{% static 'books/The Anti-Federalist Papers.jpg' %}"></img>
+            <img src="{% static 'books/Agents of War.jpg' %}"></img>
+            <img src="{% static 'books/Nuclear Express.jpg' %}"></img>
+            <img src="{% static 'books/Aristotle\'s Politics.jpg' %}"></img>
+            <img src="{% static 'books/Man\'s Search for Meaning.jpg' %}"></img>
+            <img src="{% static 'books/2034.jpg' %}"></img>
+            <img src="{% static 'books/Quiet.jpg' %}"></img>
+            <img src="{% static 'books/Screwtape Letters.jpg' %}"></img>
+            <img src="{% static 'books/Meditations.webp' %}"></img>
+            <img src="{% static 'books/Knife of Never Letting Go.jpg' %}"></img>
+            <img src="{% static 'books/Art and Science of Facilitation.jpg' %}"></img>
+            <img src="{% static 'books/Born to Reproduce.webp' %}"></img>
+            <img src="{% static 'books/The Ask and the Answer.jpg' %}"></img>
+            <img src="{% static 'books/Skyward.jpg' %}"></img>
+            <img src="{% static 'books/Dune.jpg' %}"></img>
+            <img src="{% static 'books/Monsters of Men.jpg' %}"></img>
+        </div>
+    </div>
+</section>
+<script src="{% static 'brickwork.js' %}"></script>
+<script type="text/javascript">
+    document.getElementById("herringboneSwitch").onclick = (e) => {
+        if (e.target.checked) {
+            document.getElementById("brickwork-books").classList.add("herringbone");
+        } else {
+            document.getElementById("brickwork-books").classList.remove("herringbone");
+        }
+    }
+</script>
+

@@ -1,0 +1,137 @@
+<div id="nylt-explanation" class="left-navbar" style="display: none; position: absolute; contain: layout paint; z-index: 1; margin: 0 1em; right: 0; backdrop-filter: blur(100px); cursor: auto">
+    <div style="font-family: 'Roboto', sans-serif !important; height: 20em; overflow-y: scroll; scroll-snap-type: block mandatory; scroll-padding-top: 60px; border: solid 1pt gray; scrollbar-color: auto;" onscrollend="this.querySelector('.scroll-notify').style.display = (this.scrollTop === 0 ? null : 'none')">
+        <div style="width: 100%; height: 60px; background: rgba(0, 51, 102, 0.8); position: sticky; top: 0; z-index: 1">
+            <a href="https://www.scouting.org/" target="_blank"><img width="344" height="48" src="https://www.scouting.org/wp-content/uploads/2024/01/LogoBSA.svg" style="vertical-align: middle; height: 100%; display: inline-block; padding: 10px;"></img></a>
+            <div style="width: calc(100% - 350px); height: 75%; display: inline-block; float: right; position: relative; transform: translateY(16.67%);">
+                <div style="background: var(--bs-dark); width: 95%; display: inline-block; height: 100%; margin-right: 5px; filter: brightness(1.33); border-radius: 3px;">
+                    <div style="background: var(--bs-dark); width: calc(100% - 60px); display: inline-block; height: calc(100% - 4px); border-radius: 10px; margin: 2px 4px; filter: brightness(0.75); align-content: center; padding-left: 20px; overflow-x: clip; text-wrap: nowrap; font-size: larger">https://www.scouting.org/programs/scouts-bsa/resources/nylt/</div>
+                    <a style="border-radius: 10px; background: var(--bs-dark); aspect-ratio: 1; display: inline-block; height: calc(100% - 4px); filter: brightness(0.75); margin: 2px; align-content: center; text-align: center; color: white; float: inline-end; text-decoration: none;" href="https://www.scouting.org/programs/scouts-bsa/resources/nylt/">🡢</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-notify bounce" style="position: fixed; font-size: x-large; bottom: 0; left: 0; right: 0; margin: 0 auto 5em auto; width: max-content; color: white; background: black; opacity: 0.8; font-weight: 700">↓ Scroll ↓</div>
+        <p style="margin-bottom: 0; font-size: 0.85em; color: var(--bs-body-color); scroll-snap-align: start">
+            <span>
+                <span>
+                    <a href="https://www.scouting.org/" style="color: #006cff; font-weight: 600; text-decoration: none" target="_blank">Home</a>
+                </span> &gt; <span>
+                    <a href="https://www.scouting.org/programs/" style="color: #006cff; font-weight: 600; text-decoration: none" target="_blank">Programs</a>
+                </span> &gt; <span>
+                    <a href="https://www.scouting.org/programs/scouts-bsa/" style="color: #006cff; font-weight: 600; text-decoration: none" target="_blank">Scouts BSA</a>
+                </span> &gt; <span>
+                    <a href="https://www.scouting.org/programs/scouts-bsa/resources/" style="color: #006cff; font-weight: 600; text-decoration: none" target="_blank">Scouts BSA Program Resource Links</a>
+                </span> &gt; <span>
+                    <a href="https://www.scouting.org/programs/scouts-bsa/resources/nylt/" style="color: var(--bs-body-color); text-decoration: none" target="_blank">National Youth Leadership Training</a>
+                </span>
+            </span>
+        </p>
+        <hr class="mt-0" style="color: #ced4da; height: 2px; margin-bottom: 5px">
+        <span style="display: block; font-family: 'Roboto Slab', serif; font-size: 48px; font-weight: 700; color: #003f87">National Youth Leadership Training</span>
+        <div style="color: var(--bs-body-color)">
+            <p style="opacity: 0.2">National Youth Leadership Training is an exciting, action-packed program designed for councils to provide youth members with leadership skills and experience they can use in their home troops and in other situations demanding leadership of self and others.</p>
+            <p style="opacity: 0.2">For many years, junior leader training (JLT) was an important part of the leadership training continuum of BSA local councils throughout America. In 2003 and 2004, a task force of leadership experts and hundreds of Scouts in pilot courses across the nation reviewed and tested every aspect of the new NYLT syllabus, which incorporates the latest leadership ideas and presents fresh, vital and meaningful training for today’s Scouts.</p>
+            <p style="scroll-snap-align: start">The NYLT course centers around the concepts of what a leader must BE, what a leader must KNOW, and what a leader must DO. The key elements are then taught with a clear focus on HOW TO. The skills come alive during the week as the patrol goes on a Quest for the Meaning of Leadership.</p>
+            <p style="scroll-snap-align: end">NYLT is a six-day course. Content is delivered in a troop and patrol outdoor setting with an emphasis on immediate application of learning in a fun environment. Interconnecting concepts and work processes are introduced early, built upon, and aided by the use of memory aids, which allows participants to understand and employ the leadership skills much faster.</p>
+            <p style="opacity: 0.2">Built on the legacy of past JLT successes, the new NYLT integrates the best of modern leadership theory with the traditional strengths of the Scouting experience. Through activities, presentations, challenges, discussions, and audio-visual support, NYLT participants will be engaged in a unified approach to leadership that will give them the skill and confidence to lead well. Through a wide range of activities, games, and adventures, participants will work and play together as they put into action the best Scouting has to offer.</p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    let nylt_abbr = document.getElementById("experience").querySelector('abbr[title="National Youth Leadership Training"');
+    nylt_abbr.style.cursor = 'zoom-in';
+    function nylt_expl_hide_onclick(e) {
+        if (!nylt_expl.contains(e.target)) {
+            nylt_expl.style.display = 'none';
+            document.removeEventListener('click', nylt_expl_hide_onclick);
+        }
+    }
+    var nylt_expl = {
+        el: document.getElementById("nylt-explanation"),
+        state: 'closed',
+        set_hover: () => {
+            if (nylt_expl.state === 'hovered' || nylt_expl.state === 'opened') return;
+            nylt_expl.show();
+            nylt_expl.place();
+            nylt_expl.state = 'hovered';
+
+            nylt_expl.el.addEventListener('mouseleave', nylt_expl.close);
+            nylt_expl.el.addEventListener('mouseenter', nylt_expl.preventClose);
+            nylt_abbr.addEventListener('mouseleave', nylt_expl.preventableClose);
+        },
+        unset_hover: () => {
+            nylt_expl.el.removeEventListener('mouseleave', nylt_expl.close);
+            nylt_expl.el.removeEventListener('mouseenter', nylt_expl.preventClose);
+            nylt_abbr.removeEventListener('mouseleave', nylt_expl.preventableClose);
+        },
+        hover: () => {
+            if (nylt_expl.state === 'hovered' || nylt_expl.state === 'opened') return;
+            nylt_expl.set_hover();
+        },
+        set_open: () => {
+            if (nylt_expl.state === 'opened') return;
+            else if (nylt_expl.state === 'closed') {
+                nylt_expl.show();
+                nylt_expl.place();
+            }
+            nylt_expl.state = 'opened';
+
+            document.body.style.cursor = 'zoom-out';
+            nylt_abbr.style.cursor = 'text';
+            nylt_expl.el.style.outline = "var(--bs-primary) 3pt groove";
+            document.addEventListener('click', nylt_expl.closeOnClick);
+        },
+        unset_open: () => {
+            document.body.style.cursor = null;
+            nylt_abbr.style.cursor = 'zoom-in';
+            nylt_expl.el.style.outline = null;
+            document.removeEventListener('click', nylt_expl.closeOnClick);
+        },
+        open: () => {
+            if (nylt_expl.state === 'opened') return;
+            else if (nylt_expl.state === 'hovered') nylt_expl.unset_hover();
+            nylt_expl.set_open();
+        },
+        close: () => {
+            if (nylt_expl.state === 'closed') return;
+            else if (nylt_expl.state === 'opened') nylt_expl.unset_open();
+            else if (nylt_expl.state === 'hovered') nylt_expl.unset_hover();
+
+            nylt_expl.hide();
+            nylt_expl.state = 'closed';
+        },
+        place: () => {
+            nylt_expl.el.style.top = Math.round(window.pageYOffset + nylt_abbr.getBoundingClientRect().bottom) + "px";
+        },
+        timeout: null,
+        show: () => {
+            nylt_expl.el.style.display = null;
+            nylt_expl.el.classList.remove("closing");
+        },
+        hide: () => {
+            nylt_expl.el.style.display = 'none';
+        },
+        preventableClose: () => {
+            nylt_expl.preventClose(); // Only have one running at any one time
+            nylt_expl.el.classList.add("closing");
+            nylt_expl.timeout = setTimeout(nylt_expl.close, 250);
+        },
+        preventClose: () => {
+            if (nylt_expl.timeout !== null) {
+                clearTimeout(nylt_expl.timeout);
+                nylt_expl.el.classList.remove("closing");
+                nylt_expl.timeout = null;
+            }
+        },
+        closeOnClick: (e) => {
+            if (!e || !(nylt_expl.el.contains(e.target) || nylt_abbr.contains(e.target))) {
+                nylt_expl.close();
+            }
+        },
+    }
+    nylt_abbr.addEventListener('mouseenter', nylt_expl.hover);
+    nylt_abbr.addEventListener('click', nylt_expl.open);
+    window.addEventListener('resize', (e) => {
+        if (nylt_expl.state !== 'closed') nylt_expl.place();
+    });
+</script>
+

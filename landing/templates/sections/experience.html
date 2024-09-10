@@ -1,0 +1,18 @@
+<!-- Experience-->
+<section class="resume-section" id="experience">
+    <div class="resume-section-content">
+        <h2 class="mb-5">Experience <button class="float-end btn btn-primary d-print-none" style="color: var(--bs-body-bg); font-weight: bolder" type="button" data-bs-toggle="collapse" data-bs-target="#experience .volunteer" aria-expanded="false" onclick="this.innerText = this.innerText.replace('Show', 'AAAA').replace('Hide', 'Show').replace('AAAA', 'Hide')">Show Volunteer Experience</button></h2>
+        {% for job in jobs %}
+            {% if job.template %}
+                {% include job.template with job=job only %}
+            {% else %}
+                {% include 'sections/experience/base.html' with job=job only %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% for job in jobs %}
+        {% if job.footer_template %}
+            {% include job.footer_template with job=job only %}
+        {% endif %}
+    {% endfor %}
+</section>

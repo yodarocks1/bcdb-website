@@ -1,0 +1,10 @@
+{% extends "error/base.html" %}
+
+{% block error_code_meaning %}
+    Forbidden: You don't have permission to access the requested page.
+{% endblock %}
+
+{% block error_reason %}
+    <p>How did you get here? Either the form broke, or someone tried to dupe you. No CSRF token, meaning you're susceptible to a <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery">Cross-Site Request Forgery</a> attack.</p>
+    <p style="filter: opacity(0.5)">Access blocked to <a href="{{ request.get_full_path }}">{{ request.get_full_path }}</a> (for your safety, hopefully)</p>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'landing/base.html' %}
+
+{% block title %}Create User{% endblock %}
+{% block description %}Create a new user{% endblock %}
+
+{% block sectionsNav %}{% endblock %}
+
+{% block content %}
+<form method="POST" class="m-2">
+    {% csrf_token %}
+    <div>
+        <label for="email" class="form-label animate">Email</label>
+        <input type="email" id="email" name="email" class="form-control"></input>
+    <div>
+        <label for="username" class="form-label animate">Username</label>
+        <input type="text" id="username" name="username" class="form-control"></input>
+    </div>
+    <div>
+        <label for="password" class="form-label animate">Password</label>
+        <input type="password" id="password" name="password" class="form-control"></input>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block w-100 text-white mt-4">Create</button>
+</form>
+{% endblock %}
+
+{% block footer %}
+    <script type="text/javascript">
+        function animateLabel(input) {
+            let label = document.querySelector("[for=" + input.id + "]");
+            input.onchange = () => {
+                if (input.value.length === 0) {
+                    label.classList.add("animate");
+                } else {
+                    label.classList.remove("animate");
+                }
+            }
+        }
+        animateLabel(document.getElementById("email"));
+        animateLabel(document.getElementById("username"));
+        animateLabel(document.getElementById("password"));
+    </script>
+{% endblock %}
+

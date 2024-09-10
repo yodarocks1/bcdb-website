@@ -1,0 +1,32 @@
+{% extends 'landing/base.html' %}
+
+{% block description %} Landing page {% endblock %}
+{% block title %} Home {% endblock %}
+{% block homeLink %} active {% endblock %}
+
+{% block sectionLinks %}
+    {{ block.super }}
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#values">Values</a></li>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#goals">Goals</a></li>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#more">Read More</a></li>
+    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact Me</a></li>
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    <hr class="m-0" />
+    {% include "landing/not_ready.html" with superuser_sign="True" %}
+    {% if user.is_superuser %}
+    <hr class="m-0" />
+    {% include 'sections/books.html' only %}
+    <hr class="m-0" />
+    {% include 'sections/values.html' only %}
+    <hr class="m-0" />
+    {% include 'sections/goals.html' only %}
+    <hr class="m-0" />
+    {% include 'sections/more.html' only %}
+    <hr class="m-0" />
+    {% include 'sections/contact.html' %}
+    {% endif %}
+{% endblock %}
+

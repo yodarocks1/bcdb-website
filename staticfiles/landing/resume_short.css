@@ -1,0 +1,352 @@
+@media screen {
+    body {
+        min-width: calc(8.5in + 8em);
+        border-right: 2pt solid var(--bs-secondary);
+    }
+}
+#resume-link {
+    padding-bottom: 0;
+}
+#resume-link::before {
+    content: "";
+    position: relative;
+    border-left: 7px transparent;
+    border-right: 7px transparent;
+    border-top: 10px currentColor;
+    border-bottom: 0 transparent;
+    border-style: solid;
+    top: 15px;
+    right: 3px;
+}
+#resume-link:hover::before {
+    border-top: 7px transparent;
+    border-bottom: 7px transparent;
+    border-left: 10px currentColor;
+    border-right: 0 transparent;
+    border-style: solid;
+    top: -6px;
+    right: 2px;
+    font-size: 0;
+    margin-right: 4px;
+}
+#resume-link:hover + ul {
+    opacity: 0.15;
+    height: 0;
+}
+#resume-link + ul {
+    padding-left: 0.5em;
+    transition: height 0.5s ease 0.1s;
+    overflow-y: clip;
+    height: 2em;
+}
+#resume-link + ul > li {
+    list-style: disc;
+    color: white;
+}
+#resume-printable-link {
+    padding-top: 0;
+}
+#resume-printable-link:after {
+    content: "Printable";
+    font-size: small;
+}
+@media (min-width: 992px) {
+    body {
+        min-width: calc(8.5in + 8em + 17rem);
+    }
+    #resume-printable-link::after {
+        content: " • Printable";
+    }
+}
+#about {
+    min-height: 85vh;
+    transition: min-height 0.5s ease-out;
+}
+.print-1em svg {
+    height: 1rem;
+}
+#about + div {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: white;
+}
+#about, #education, #skills, #projects, #experience {
+    display: none;
+}
+#experience {
+    min-height: unset;
+}
+:not(#about) + hr {
+    display: none;
+}
+#resume-table {
+    color: black;
+    page-break-before: always;
+    page-break-inside: avoid;
+    page-break-after: always;
+    position: relative;
+    width: 7.7in;
+    height: 10.5in;
+    font-size: 10pt;
+}
+@media screen {
+    #resume-table {
+        outline: 3pt var(--bs-primary) groove;
+        margin: 0.1in 0.4in 0.4in;
+    }
+}
+#resume-table #footer {
+    page-break-before: avoid;
+}
+#resume-table a {
+    color: inherit;
+    text-decoration: inherit;
+}
+#resume-table .lead {
+    font-size: large;
+}
+#resume-table .lead em {
+    font-size: medium;
+    font-weight: 600;
+    display: block;
+    width: 30em;
+    margin: auto;
+}
+#resume-table #rt-contact {
+    font-size: 15pt;
+    line-height: 0.8;
+    color: #333;
+}
+#resume-table th {
+    color: black;
+    font-weight: bold;
+    border-bottom: 1pt solid currentColor;
+    font-family: "Saira Extra Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    text-transform: uppercase;
+    font-size: 16pt;
+}
+#resume-table #rt-education .d-flex {
+    display: inherit !important;
+}
+#resume-table #rt-education .d-flex > div:last-child {
+    text-align: left !important;
+}
+#resume-table #rt-education .d-flex > div > p:last-child,
+#resume-table #rt-education .d-flex > div:last-child .sr-only {
+    display: none;
+}
+#resume-table .rt-jobs > h2 {
+    display: none;
+}
+#resume-table .rt-jobs > div {
+    margin-bottom: 0 !important;
+}
+#resume-table .rt-jobs > div > div > ul {
+    margin-bottom: 0pt;
+}
+#resume-table .rt-jobs .subheading {
+    font-size: 12pt;
+    margin-top: -3pt;
+    line-height: 1;
+    color: #444;
+}
+#resume-table .rt-jobs .d-flex > div:last-child {
+    line-height: 1.35;
+}
+#resume-table .rt-jobs .d-flex > div:last-child > :last-child {
+    color: #444;
+}
+#resume-table .rt-jobs .d-flex > div:last-child > :last-child br {
+    display: none;
+}
+#resume-table .rt-jobs li:not(.list-inline-item) {
+    font-size: 9.5pt;
+}
+#resume-table h3 {
+    font-size: 15pt;
+}
+#resume-table #rt-skills {
+    padding: 1pt 5pt;
+    text-align: center;
+    color: gray;
+}
+#resume-table #rt-skills .dev-icons {
+    vertical-align: middle;
+    height: 15pt;
+    font-size: 15pt;
+    line-height: 0;
+}
+#resume-table #rt-skills .dev-icons .list-inline-item:not(:last-child) {
+    margin-right: 0;
+}
+#resume-table #rt-skills .dev-icons svg {
+    height: 15pt;
+    vertical-align: middle !important;
+    top: unset !important;
+}
+#resume-table #rt-skills .dev-icons .list-inline-item {
+    vertical-align: bottom;
+}
+#resume-table .dev-icons .list-inline-item a {
+    pointer-events: none;
+}
+#resume-table .dev-icons .list-inline-item a > .print-show {
+    display: none;
+}
+#resume-table #rt-projects summary {
+    display: none;
+}
+#resume-table #rt-projects p {
+    margin-bottom: 0;
+}
+#resume-table #rt-projects .list-inline-item:not(:last-child) {
+    margin-right: 2pt;
+}
+#resume-table #rt-projects .list-inline-item {
+    vertical-align: top;
+}
+
+#resume-table:not([data-selection-mode="none"]) a {
+    pointer-events: none;
+}
+#resume-table[data-selection-mode="div"] .rt-jobs > div:hover,
+#resume-table[data-selection-mode="div"] [selectable="div"]:hover {
+    outline: 1pt solid green;
+    cursor: pointer;
+}
+#resume-table[data-selection-mode="element"] .rt-jobs > div li:hover,
+#resume-table[data-selection-mode="element"] .rt-jobs > div p:hover,
+#resume-table[data-selection-mode="element"] .rt-jobs > div span:hover,
+#resume-table[data-selection-mode="element"] .rt-jobs > div h1:hover,
+#resume-table[data-selection-mode="element"] .rt-jobs > div h2:hover,
+#resume-table[data-selection-mode="element"] .rt-jobs > div h4:hover,
+#resume-table[data-selection-mode="element"] .rt-jobs > div h5:hover,
+#resume-table[data-selection-mode="element"] .rt-jobs > div h6:hover,
+#resume-table[data-selection-mode="element"] [selectable="div"] li:hover,
+#resume-table[data-selection-mode="element"] [selectable="div"] p:hover,
+#resume-table[data-selection-mode="element"] [selectable="div"] span:hover,
+#resume-table[data-selection-mode="element"] [selectable="div"] .subselect:hover,
+#resume-table[data-selection-mode="element"] [selectable="element"]:hover {
+    outline: 1pt solid blue;
+    cursor: pointer;
+}
+#resume-table[data-selection-mode="table"] table:hover,
+#resume-table[data-selection-mode="row"] > tbody > tr:hover {
+    outline: 2pt solid orange;
+    cursor: pointer;
+}
+#resume-table[data-selection-mode="deselect"] .selected:hover {
+    outline: 1pt solid pink;
+    outline-color: pink !important;
+    cursor: pointer;
+}
+#selection-mode[data-mode="div"] {
+    color: green;
+}
+#selection-mode[data-mode="element"] {
+    color: blue;
+}
+#selection-mode[data-mode="table"],
+#selection-mode[data-mode="row"] {
+    color: orange;
+}
+#selection-mode[data-mode="deselect"] {
+    color: pink;
+}
+#resume-table .selected {
+    outline: 1pt solid red;
+    outline-color: red !important;
+}
+#resume-table table.selected,
+#resume-table tr.selected {
+    outline-width: 2pt;
+}
+#resume-table [contenteditable]:focus-visible {
+    filter: none;
+    outline-offset: 0;
+    border-radius: 2px;
+}
+#resume-table [contenteditable]:focus-visible *:not(#text) {
+    filter: none;
+}
+
+section.resume-section.project {
+    min-height: auto;
+}
+section.project .dev-icons {
+    padding-left: 0.5em;
+    vertical-align: middle;
+}
+section.project .dev-icons svg {
+    height: 0.5em;
+    vertical-align: middle !important;
+    top: unset !important;
+}
+section.project .dev-icons .list-inline-item:not(:last-child) {
+    margin-right: 0.25rem;
+}
+.succinct section.project .extra {
+    min-height: fit-content;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+section.project .extra {
+    height: fit-content;
+    transition: all 2s;
+    overflow-y: clip;
+}
+section.project {
+    transition: padding 0.5s;
+}
+.succinct section.project {
+    padding-bottom: 0;
+}
+[ratio] {
+    transition: height 2s;
+}
+.succinct .project-buttons {
+    zoom: 0.5
+}
+.succinct .project-buttons a {
+    width: fit-content !important;
+}
+
+#delete-button {
+    transition: margin .4s ease-in;
+    position: relative;
+}
+#delete-button:focus {
+    margin-right: 1.5em;
+    transition: margin .4s ease-out;
+    cursor: auto;
+}
+#delete-button::after {
+    width: 0;
+    transition: width .4s ease-in, padding .4s ease-in, margin .4s ease-in;
+    content: "🞂";
+    overflow: clip;
+    position: absolute;
+    display: inline-block;
+    background: #f00 padding-box;
+    color: white;
+    border-radius: 0;
+    padding: calc(0.5em - 0.75pt) 0;
+    top: 0;
+    right: 0;
+    opacity: 0.95;
+    top: -1pt;
+}
+#delete-button:focus::after {
+    width: 1.5em;
+    margin-right: -1.5em;
+    cursor: pointer;
+    transition: width .4s ease-out, padding .4s ease-out, margin .4s ease-out;
+}
+#move-button-up[disabled],
+#move-button-down[disabled] {
+    filter: contrast(0.5);
+}
+

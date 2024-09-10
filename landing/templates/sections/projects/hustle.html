@@ -1,0 +1,30 @@
+{% extends 'landing/project_base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <img src="{% static 'HustleBackground.png' %}" width="95%" ratio class="extra"></img>
+    <p>A web app built to connect workers with people that need yard work done. This could include lawn mowing, leaf raking, or snowblowing.</p>
+        <ul>
+            <li>Created design requirements to customer specifications.</li>
+            <li>Used use-case and activity diagrams to ensure all team members stayed in sync.</li>
+            <li>Used Agile software development principles.</li>
+            <li>Held weekly stand-up meetings</li>
+        </ul>
+    <p>Built in a team of 4 in a series of sprints.</br>Course project. The professor acted as the customer, with a specific goal in mind. All design requirements had to be cleared by him.</p>
+    <details name="hustle"><summary><code>Use Case &amp; Activity Diagrams.pptx</code> (PDF embed)</summary>
+        <div style="width: 95%" ratio="0.5630630631">
+            <embed src="{% static 'projects/Hustle - Use Case Diagrams.pdf' %}" width="100%" height="100%" type="application/pdf"></embed>
+        </div>
+    </details>
+    <details name="hustle"><summary><code>Final Presentation.pptx</code> (PDF embed)</summary>
+        <div style="width: 95%" ratio="0.562">
+            <embed src="{% static 'projects/Hustle - Final Presentation.pdf' %}" width="100%" height="100%" type="application/pdf"></embed>
+        </div>
+    </details>
+{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-outline-primary d-inline-block mb-4 fs-4 disabled" style="width: 75%; line-height: 0.75;" href="">Open</br><span style="font-size: 8pt; font-weight: bold; color: var(--bs-warning); text-decoration: underline">Integration currently W.I.P.</span></a>
+    <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 20%" href="https://github.com/yodarocks1/3MusketeersAndARifleman"><i class="fab fa-github" width="32"></i> GitHub</a>
+{% endblock %}

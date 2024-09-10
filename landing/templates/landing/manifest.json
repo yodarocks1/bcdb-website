@@ -1,0 +1,20 @@
+{
+    "name": "Bennett DenBleyker",
+    "short_name": "Bennett D",
+    "id": "bennett.denbleyker",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "type": "image/svg+xml",
+            "sizes": "any"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "dir": "ltr",
+    "lang": "en",
+    "orientation": "any",
+    "scope": "/"{% if primaryColor %},
+    "theme_color": "{{ primaryColor }}"{% endif %}{% if theme == "dark" %},
+    "background_color": "#222222"{% endif %}
+}

@@ -1,0 +1,46 @@
+<!-- Contact-->
+<section class="resume-section" id="contact">
+    <div class="resume-section-content">
+        <h2 class="mb-5">Contact Me</h2>
+        <form action="{% url 'landing:contact' %}" method="POST" class="mx-2">
+            {% csrf_token %}
+            <div>
+                <label for="name" class="form-label animate">Name</label>
+                <input id="name" name="name" class="form-control"></input>
+            </div>
+            <div>
+                <label for="email" class="form-label animate">Email</label>
+                <input id="email" name="email" class="form-control"></input>
+            </div>
+            <div>
+                <label for="subject" class="form-label animate">Subject</label>
+                <input id="subject" name="subject" class="form-control"></input>
+            </div>
+            <div>
+                <label for="message" class="form-label animate">Message</label>
+                <textarea id="message" name="message" class="form-control"></textarea>
+            </div>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary text-white">Send</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script type="text/javascript">
+    function animateLabel(input) {
+        let label = document.querySelector("[for=" + input.id + "]");
+        input.onchange = () => {
+            if (input.value.length === 0) {
+                label.classList.add("animate");
+            } else {
+                label.classList.remove("animate");
+            }
+        }
+    }
+    animateLabel(document.getElementById("name"));
+    animateLabel(document.getElementById("email"));
+    animateLabel(document.getElementById("subject"));
+    animateLabel(document.getElementById("message"));
+</script>
+

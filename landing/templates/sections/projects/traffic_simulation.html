@@ -1,0 +1,134 @@
+{% extends 'landing/project_base.html' %}
+
+{% block content %}
+    <img width="95%" ratio id="traffic_simulation_image" src="https://github.com/yodarocks1/traffic-simulator/raw/master/plot.png" class="extra"></img>
+    <p>Completed for class <em>Algorithms Under Uncertainty</em></p>
+    <details steals="traffic_simulation_image" name="traffic_simulation"><summary><code>README.md</code> (HTML embed)</summary>
+        <div class="stackedit__html" style="width: 95%; background-color: lightgray; color: black !important; padding: 0.5em; overflow-y: scroll" ratio="1.2941176471"><h1 id="traffic">Traffic</h1>
+            <p><img src="https://raw.githubusercontent.com/yodarocks1/traffic-simulator/master//plot.png" alt="Plot with traffic" width="100%"></p>
+            <p>The plot, when run, simulates traffic.<br>
+            The colors represent the number of vehicles on the road (albeit with no respect to the length of the road segment),<br>
+            as a percentage of the maximum-count road segment.</p>
+            <h2 id="hover-events">Hover events</h2>
+            <h3 id="roads">Roads</h3>
+            <p>Hover over roads to see their weights (the time in minutes it takes to travel across the node when no traffic is present)</p>
+            <p><img src="https://raw.githubusercontent.com/yodarocks1/traffic-simulator/master//hover_edge.png" alt="Road hover tooltip"></p>
+            <h3 id="intersections">Intersections</h3>
+            <p>Hover over intersections to see their latitude/longitude, and the number of vehicles currently queueing at that intersection.<br>
+            They also show an icon representing their type (🚦: Traffic Light, 🛑: Stop Sign, ◯: Roundabout )</p>
+            <p><img src="https://raw.githubusercontent.com/yodarocks1/traffic-simulator/master//hover_light.png" alt="Traffic light hover tooltip"><br>
+            <img src="https://raw.githubusercontent.com/yodarocks1/traffic-simulator/master//hover_stop.png" alt="Stop sign hover tooltip"><br>
+            <img src="https://raw.githubusercontent.com/yodarocks1/traffic-simulator/master//hover_roundabout.png" alt="Roundabout hover tooltip"></p>
+            <p>Stop signs will also show which sides have stop signs.<br>
+            <code>EW</code> indicates that North-South traffic is free-flowing, while East-West traffic must stop.<br>
+            <code>NS</code> similarly indicates that East-West traffic is free-flowing, while North-South traffic must stop.</p>
+            <h3 id="generators">Generators</h3>
+            <p>Hover over generators to see how much traffic is generated from that direction at that intersection.</p>
+            <p><img src="https://raw.githubusercontent.com/yodarocks1/traffic-simulator/master//hover_generator.png" alt="Generator hover tooltip"></p>
+            <h2 id="logic">Logic</h2>
+            <h3 id="roads-1">Roads</h3>
+            <p>Road weight increases depending on how many cars are on it following the equation:<br>
+            <span class="katex--inline"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>=</mo><mo stretchy="false">(</mo><mi>c</mi><mi>a</mi><mi>r</mi><mi>s</mi><mo>+</mo><mn>20</mn><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mn>26.25</mn></mrow><annotation encoding="application/x-tex">w=(cars + 20) / 26.25</annotation></semantics></math></span></span></span></p>
+            <h3 id="intersections-1">Intersections</h3>
+            <h4 id="🛑-stop-signs-all-way">🛑 Stop Signs (All-way)</h4>
+            <p>Stop signs allow one car from one direction every 2 seconds, plus all cars that do not collide with it.</p>
+            <p>For example, if it’s the North-bound traffic’s turn, then the first North-bound car can go.</p>
+            <p>If it turns left, then the East-bound car can go <em>if it is turning right</em>, the South-bound car can go <em>if it is turning left</em>, and the West-bound car can go <em>if it is turning right</em>.</p>
+            <p>If it goes straight, then the East-bound car can go <em>if it is turning right</em>, the South-bound car can go <em>if it is going straight (if the East-bound car didn’t turn right) or turning right</em>, and the West-bound car cannot go.</p>
+            <p>Etcetera.</p>
+
+            <details><summary>Stop sign logic</summary>
+                <p><em>Scenario 1</em>: Left turn</p>
+                <pre>Allowed:
+ - EB right
+ - SB left
+ - WB right
+    ✓    ✓
+    ↓ SB ↑
+@←←   ↘  ╰←←←✓
+ EB  ↖   ↘ WB
+✓→→→╮  ↖   →→✓
+    ↓ NB ↑
+    ✓    @
+                </pre>
+                <p><em>Scenario 2</em>: Straight</p>
+                <pre>Allowed:
+ - SB right
+ - EB right
+ OR
+ - SB straight
+    ✓    @            ✓    @    
+    ↓ SB ↑            ↓ SB ↑    
+✓←←←╯    ↑  ←X     ←  ↓    ↑  ←X
+ EB      ↑ WB      EB ↓    ↑ WB 
+✓→→→╮    ↑  →X    X→  ↓    ↑  → 
+    ↓ NB ↑            ↓ NB ↑    
+    ✓    @            ✓    @    
+                </pre>
+                <p><em>Scenario 3</em>: Right</p>
+                <pre>3a: EB right
+Allowed:
+ - SB right
+ - WB right
+ OR
+ - WB straight
+                      X
+    ↓ SB ↑            ↓ SB ↑        
+ ←←←╯    ╰←←←      ←←←←←←←←←←←←     
+ EB        WB      EB        WB     
+#→→→╮    ╭→→→@    #→→→╮    ╭→→→@    
+    ↓ NB ↑            ↓ NB ↑        
+    #    @            #    @        
+                </pre>
+                <pre>3b: EB left
+Allowed:
+ - SB right
+ - WB left
+    ✓    #
+    ↓ SB ↑
+✓←←←╯  ↗    ←✓
+ EB  ↗  ↙  WB
+#→→   ↙  ╭→→→@
+    ↓ NB ↑
+    ✓    @
+                </pre>
+            </details>
+
+            <h4 id="🛑-stop-signs-tributary">🛑 Stop Signs (Tributary)</h4>
+            <p>Stop signs <strong>can</strong> allow one car from tributaries every 2 seconds, while all cars from the primary roads continue through.</p>
+            <p>Cars are only allowed to continue through the intersection if they take an action that is not going to collide with present through-traffic.</p>
+            <h4 id="🚦-traffic-lights">🚦 Traffic Lights</h4>
+            <p>Traffic lights have phases that can contain the following parts for each direction: <code>left turns</code>, <code>right turns</code>, <code>straights</code>, and <code>left yields</code>.<br>
+            Right yields are always assumed to be on.<br>
+            No phase can contain phase parts that collide with one another.</p>
+            <p>These phases are rotated through by the active <code>PhaseController</code>.</p>
+            <h4 id="◯-roundabouts">◯ Roundabouts</h4>
+            <p>Roundabouts let one car through from <em>each</em> direction every 2 seconds.</p>
+            <h3 id="generators-1">Generators</h3>
+            <p>Generators generate, on average (using a normal distribution), the given number of cars per minute.</p>
+            <p>Vehicles’ destinations may be any intersection. Each intersection has a weight, increasing the odds of being selected as a destination.</p>
+            <h1 id="run-options">Run Options</h1>
+            <h2 id="python-w-env">python w/ env</h2>
+            <ul>
+                <li>Open a Windows Command Prompt
+                    <ul>
+                        <li>Yes…it unfortunately has to be Windows, unless you want to make your own env that matches what I used</li>
+                    </ul>
+                </li>
+                <li>Run <code>env\Scripts\activate</code></li>
+                <li>Run <code>python app.py</code></li>
+                <li>Open <code>localhost:8050</code></li>
+            </ul>
+            <h2 id="visual-studio">Visual Studio</h2>
+            <ul>
+                <li>Open <code>Traffic.sln</code></li>
+                <li>Press <code>Start Without Debugging</code> (or use <code>Ctrl+F5</code>)</li>
+                <li>Open <code>localhost:8050</code></li>
+            </ul>
+        </div>
+    </details>
+{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 95%" href="https://github.com/yodarocks1/traffic-simulator"><i class="fab fa-github" width="32"></i> GitHub</a>
+{% endblock %}

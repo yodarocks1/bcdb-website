@@ -1,0 +1,36 @@
+{% extends 'landing/project_base.html' %}
+
+{% block content %}
+    <div style="line-height: 1.15; background: var(--bs-dark); padding: 0.5em; width: min-content; position: relative; border-radius: 0.5em; max-width: 100%" class="extra" ratio>
+        <pre style="color: #ff7a88; font-weight: bold;">
+________                               _______________                
+___  __/__________________________________  ____/__  /________      __
+__  /  _  _ \_  __ \_  ___/  __ \_  ___/_  /_   __  /_  __ \_ | /| / /
+_  /   /  __/  / / /(__  )/ /_/ /  /   _  __/   _  / / /_/ /_ |/ |/ / 
+/_/    \___//_/ /_//____/ \____//_/    /_/      /_/  \____/____/|__/
+
+        </pre><pre style="color: #5fff00; font-weight: bold;">
+ __      __  _____          _____        _     
+ \ \    / / |  __ \   /\   |  __ \ /\   | |    
+  \ \  / /__| |__) | /  \  | |__) /  \  | | __ 
+   \ \/ / _ \  _  / / /\ \ |  ___/ /\ \ | |/ / 
+    \  /  __/ | \ \/ ____ \| |  / ____ \|   &lt;  
+     \/ \___|_|  \__/    \___| /_/    \___|\_\ 
+
+Alias: verapak == python /src/VERAPAK
+       Call 'verapak' for usage</pre>
+        <span style="position: absolute; bottom: 0.5em; right: 0.5em"><code>verapak:latest</code> <a href="https://colab.research.google.com/drive/1aMJp6svsBbKfGGyfpWc-mxx-iid7Hc2W?usp=sharing" target="_blank" title="Try it yourself!"><i class="fab fa-docker" style="color: white"></i></a></span>
+    </div>
+    <p>Refutation-based Adversarial Robustness Verification of Deep Neural Networks</p>
+        <ul>
+            <li>Improved the safety and robustness of numerous and diverse AI models by up to 99.96%</li>
+            <li>Discovered flaws in the soundness of two state-of-the-art Deep Neural Network verification tools.</li>
+            <li>Used modern AI tools, standards, and deployment techniques.</li>
+        </ul>
+    <p>Work towards publication is in progress.</p>
+{% endblock %}
+
+{% block buttons %}
+    <a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 47.5%" href="https://hub.docker.com/repository/docker/yodarocks1/verapak/general"><i class="fab fa-docker"></i> Docker</a>
+	<a class="btn btn-outline-primary d-inline-block mb-4 fs-4" style="width: 47.5%" href="https://github.com/formal-verification-research/VERAPAK"><i class="fab fa-github" width="32"></i> GitHub</a>
+{% endblock %}

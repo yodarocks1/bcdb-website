@@ -1,0 +1,79 @@
+{% extends 'landing/base.html' %}
+
+{% block title %}Manage{% endblock %}
+{% block description %}Manage references shown on the site{% endblock %}
+
+{% block sectionsNav %}{% endblock %}
+
+{% block content %}
+<form method="POST" id="delete_form" action="{% url 'landing:del_reference' %}">
+    {% csrf_token %}
+</form>
+<form method="POST" class="m-2" id="create_form">
+    {% csrf_token %}
+    <div>
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" value="{{ user.username }}" readonly></input>
+    </div>
+    <div>
+        <label class="form-label">Email</label>
+        <input type="text" id="email" class="form-control" value="{{ user.email }}" readonly></input>
+    </div>
+    <div>
+        <label for="name" class="form-label animate">Name</label>
+        <input type="text" id="name" name="name" class="form-control" value="{{ form_data.name }}"></input>
+    </div>
+    <div>
+        <label for="relation" class="form-label animate">Relation</label>
+        <input type="text" id="relation" name="relation" class="form-control" value="{{ form_data.relation }}"></input>
+    </div>
+    <div>
+        <label for="reference" class="form-label animate">Reference Text</label>
+        <textarea type="text" id="reference" name="reference" class="form-control">{{ form_data.reference }}</textarea>
+    </div>
+    <!--
+    <div>
+        <input type="checkbox" id="hide_email" name="hide_email" onchange="hideEmailChange(this)" class="form-check-input"></input>
+        <label for="hide_email" class="form-check-label">Hide email</label>
+    </div>
+    -->
+</form>
+<div class="mx-2">
+    <span>Legal <em>something something</em>: Once saved, all information above will be visible by anyone visiting the site. Should you decide to remove it, simply press the delete button.</span>
+    <div class="row mt-4">
+        <button type="submit" form="create_form" class="col-9 btn btn-primary btn-block text-white">Save</button>
+        <button type="submit" form="delete_form" class="col-3 btn btn-secondary btn-block" {% if not form_data.exists %}disabled{% endif %}>Delete</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+    <script type="text/javascript">
+        function animateLabel(input) {
+            let label = document.querySelector("[for=" + input.id + "]");
+            input.onchange = () => {
+                if (input.value.length === 0) {
+                    label.classList.add("animate");
+                } else {
+                    label.classList.remove("animate");
+                }
+            }
+            input.onchange()
+        }
+        animateLabel(document.getElementById("name"));
+        animateLabel(document.getElementById("relation"));
+        animateLabel(document.getElementById("reference"));
+        
+        /*var emailInput = document.getElementById("email");
+        var emailDefault = emailInput.getAttribute("value");
+
+        function hideEmailChange(el) {
+            if (el.checked) {
+                emailInput.value = "<HIDDEN>";
+            } else {
+                emailInput.value = emailDefault;
+            }
+        }*/
+    </script>
+{% endblock %}
+

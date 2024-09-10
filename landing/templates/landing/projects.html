@@ -1,0 +1,130 @@
+{% extends 'landing/base.html' %}
+
+{% block description %} List of and links to my projects {% endblock %}
+{% block title %} Projects {% endblock %}
+{% block projLink %} active {% endblock %}
+
+{% block header %}
+    <style type="text/css">
+        section.resume-section.project, #about {
+            min-height: auto;
+        }
+        #about .lead, #about .social-icon {
+            display: none;
+        }
+        #about .subheading {
+            margin-bottom: 0 !important;
+        }
+        .dev-icons {
+            padding-left: 0.5em;
+            vertical-align: middle;
+        }
+        .dev-icons svg {
+            height: 0.5em;
+            vertical-align: middle !important;
+            top: unset !important;
+        }
+        .dev-icons .list-inline-item:not(:last-child) {
+            margin-right: 0.25rem;
+        }
+        .succinct section.project .extra {
+            min-height: fit-content;
+            height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            border: none !important;
+        }
+        section.project .extra {
+            height: fit-content;
+            transition: all 2s;
+            overflow-y: clip;
+        }
+        section.project {
+            transition: padding 0.5s;
+        }
+        .succinct section.project {
+            padding-bottom: 0;
+        }
+        [ratio] {
+            transition: height 2s;
+        }
+        .succinct .project-buttons {
+            zoom: 0.5
+        }
+        .succinct .project-buttons a {
+            width: fit-content !important;
+        }
+    </style>
+{% endblock %}
+
+{% block sectionLinks %}
+    {% for project in project_map %}
+        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#proj_{{ project.id }}">{{ project.name }}</a></li>
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    {{ block.super }}
+    {% for project in project_map %}
+        {% include project.template with project=project only %}
+    {% endfor %}
+    <hr class="m-0">
+    {% include "sections/playground.html" %}
+{% endblock %}
+
+{% block footer %}
+    {{ block.super }}
+    <script type="text/javascript">
+        document.getElementById("succinctSwitch").onclick = (e) => {
+            if (e.target.checked) {
+                document.getElementById("extra-hider").classList.add("hide-extras");
+            } else {
+                document.getElementById("extra-hider").classList.remove("hide-extras");
+            }
+        };
+        function updateRatio(target) {
+            let ratio = target.getAttribute("ratio");
+            if (ratio == 0) {
+                target.style.height = "0";
+            } else {
+                target.style.height = target.getBoundingClientRect().width * ratio + "px";
+            }
+        }
+        function handleToggleStealer(stealer) {
+            let stolen = document.getElementById(stealer.getAttribute("steals"));
+            if (stealer.open) {
+                stolen.setAttribute("ratio", "0");
+            } else {
+                stolen.setAttribute("ratio", stolen.getAttribute("stolen"));
+            }
+            updateRatio(stolen);
+        }
+
+        window.onload = () => {
+            let ratioed = document.querySelectorAll("[ratio]");
+            for (let ratio of ratioed) {
+                if (ratio.getAttribute("ratio") === '') {
+                    let rect = ratio.getBoundingClientRect();
+                    ratio.setAttribute("ratio", rect.height / rect.width);
+                }
+            }
+
+            let stealers = document.querySelectorAll("details[steals]");
+            for (let stealer of stealers) {
+                let stolen = document.getElementById(stealer.getAttribute("steals"));
+                stolen.setAttribute("stolen", stolen.getAttribute("ratio"));
+                stealer.addEventListener("toggle", (event) => handleToggleStealer(event.target));
+                handleToggleStealer(stealer);
+            }
+
+            for (let ratio of ratioed) {
+                updateRatio(ratio);
+            }
+            window.addEventListener("resize", () => {
+                for (let ratio of ratioed) {
+                    updateRatio(ratio);
+                }
+            });
+        }
+    </script>
+{% endblock %}
